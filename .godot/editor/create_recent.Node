@@ -1,0 +1,9 @@
+CollisionShape3D
+MultiplayerSpawner
+StaticBody3D
+Button
+CanvasLayer
+MultiplayerSynchronizer
+MeshInstance3D
+Node3D
+SpringArm3D
