@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1767676986
+::res://::1767815556
 Icon.png::CompressedTexture2D::7184207129579724838::1767565849::1767565849::1::::<><><>0<>0<>c0be17c887b0050d60b97bbb7185c2ca<>res://.godot/imported/Icon.png-33e63688031d53466d4d656c73cf10ca.ctex::
 ::res://entity/::1767598365
 Character.tscn::PackedScene::3002437647349815528::1767598365::0::1::::<><><>0<>0<><>::uid://dx84218kjv8fc::::res://scripts/Character.gd<>uid://ce02r8141wq6t::::res://scripts/animation stuff.gd<>uid://btlw3dpaxgr8f::::res://model/TEX_Sonic.png
@@ -132,12 +132,12 @@ World.obj::Mesh::3540775625046656930::1767651131::1767651134::1::::<><><>0<>0<>b
 18.png::CompressedTexture2D::1912704694390455004::1767651131::1767651132::1::::<><><>0<>0<>31b3d09c822535217b8dcb5f804cefc7<>res://.godot/imported/18.png-8cd8671d6579be5b097cf3f54b770a27.ctex::
 19.png::CompressedTexture2D::6943982854644439286::1767651131::1767651132::1::::<><><>0<>0<>6d47c5dcc60a12f7874978474a126d4b<>res://.godot/imported/19.png-c125659dc308315104dd86414ab79e11.ctex::
 20.png::CompressedTexture2D::3157612769903912013::1767651131::1767651132::1::::<><><>0<>0<>28613ef9fd82436d53a214c4e0ed1af4<>res://.godot/imported/20.png-237a12aae5b6c4ab4383d71136f40bee.ctex::
-::res://scene/::1767676919
+::res://scene/::1767679419
 sonicworld.tscn::PackedScene::4071803605077113069::1767659198::0::1::::<><><>0<>0<><>::uid://dw7r8a6sb66fm::::res://scripts/main.gd<>uid://bqpgb7fnqjncc::::res://model/World/World.obj
-Test.tscn::PackedScene::1554458716698205502::1767676919::0::1::::<><><>0<>0<><>::uid://dw7r8a6sb66fm::::res://scripts/main.gd<>uid://dl5lsk3ecoy8x::::res://model/Untitled.png<>uid://0ejpok1hebii::::res://model/MeshTest.obj<>uid://cbdsxiqqrbgo2::::res://entity/speed_booster.tscn
-::res://scripts/::1767659490
+Test.tscn::PackedScene::1554458716698205502::1767679419::0::1::::<><><>0<>0<><>::uid://dw7r8a6sb66fm::::res://scripts/main.gd<>uid://dl5lsk3ecoy8x::::res://model/Untitled.png<>uid://0ejpok1hebii::::res://model/MeshTest.obj<>uid://cbdsxiqqrbgo2::::res://entity/speed_booster.tscn
+::res://scripts/::1767678515
 animation stuff.gd::GDScript::5106877677879629665::1767597985::0::1::::Body<>Node3D<><>0<>0<><>::
-Character.gd::GDScript::8843540346916574696::1767659490::0::1::::<>CharacterBody3D<><>0<>0<><>::
+Character.gd::GDScript::8843540346916574696::1767678515::0::1::::<>CharacterBody3D<><>0<>0<><>::
 main.gd::GDScript::8770567868031185210::1767565849::0::1::::<>Node<><>0<>0<><>::
 main_manu.gd::GDScript::8152403577368087701::1767565849::0::1::::MainMenuUI<>Control<><>0<>0<><>::
 SpeedBooster.gd::GDScript::1618651539257870096::1767565849::0::1::::<>Area3D<><>0<>0<><>::
