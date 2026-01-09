@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0djtjvfi88m8"]
+
+[ext_resource type="PackedScene" uid="uid://d2deo1y3314n3" path="res://model/TripwireUpdate.fbx" id="1_dxkdu"]
+[ext_resource type="Material" uid="uid://py0wx2ll5h57" path="res://model/TripWiremat.tres" id="2_wbrpo"]
+
+[node name="TripwireUpdate" instance=ExtResource("1_dxkdu")]
+
+[node name="Body" parent="Armature/Skeleton3D" index="0"]
+material_override = ExtResource("2_wbrpo")
+gi_lightmap_texel_scale = 0.01

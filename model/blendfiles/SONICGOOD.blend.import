@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://blorw2hibvk35"
-path="res://.godot/imported/SONICGOOD.blend-a8ffe499e596bfcd43c3a5fd3f3fe200.scn"
+path="res://.godot/imported/SONICGOOD.blend-49cf9b9ece44c43af94afcec85454644.scn"
 
 [deps]
 
-source_file="res://model/SONICGOOD.blend"
-dest_files=["res://.godot/imported/SONICGOOD.blend-a8ffe499e596bfcd43c3a5fd3f3fe200.scn"]
+source_file="res://model/blendfiles/SONICGOOD.blend"
+dest_files=["res://.godot/imported/SONICGOOD.blend-49cf9b9ece44c43af94afcec85454644.scn"]
 
 [params]
 
