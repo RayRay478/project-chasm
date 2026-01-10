@@ -14,12 +14,16 @@ data = PackedVector3Array(-318.69778, -188.8105, -16.0001, -303.891, -202.402, -
 sky_material = SubResource("ProceduralSkyMaterial_gqblb")
 
 [sub_resource type="Environment" id="Environment_a1ivj"]
-background_mode = 2
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 5.0
 sky = SubResource("Sky_3xqac")
 
 [node name="JamLev" instance=ExtResource("1_ogl73")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("2_u1led")
+
+[node name="World" parent="." index="0"]
+transform = Transform3D(0.9999998, 0, 0, 0, 0, -0.9999998, 0, 0.9999998, 0, 0, -35.83997, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World" index="0"]
 

@@ -21,8 +21,6 @@ var airLength = 0.5
 var margin = 0.1
 
 
-
-
 @onready var casters = [$Pivot/FrontCheck,$Pivot/BackCheck,$Pivot/BackCheck2]
 
 var ground_timer = 0.0
@@ -31,24 +29,15 @@ var speed_margin = 10.0
 
 
 @onready var speedthingy = $SpeedLooky
+@onready var camera = $Camera/CameraPivot/SpringArm3D/Camera3D
 
-@onready var camera = $CameraPivot/SpringArm3D/Camera3D
-@onready var _camera_pivot := $CameraPivot as Node3D # this is used for movement reference
 
-@export_range(0.0, 1.0) var mouse_sensitivity = 0.01
-@export var tilt_limit = deg_to_rad(75)
-
-@export var _body: Node3D = null
+@onready var _body: Node3D = $Pivot/SONICGOOD
 
 func _enter_tree():
 	set_multiplayer_authority(int(str(name)))
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
-		# Prevent the camera from rotating too far up or down.
-		_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, -tilt_limit, tilt_limit)
-		_camera_pivot.rotation.y += -event.relative.x * mouse_sensitivity
+
 
 
 
@@ -70,7 +59,7 @@ func _physics_process(delta):
 	# print("velocity:",velocity) 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	# calculate the forward direction based on input and direction from the floor and the camera
 	var calcForward = camera.global_position.direction_to(global_position).slide(up_direction)
 	# 
@@ -104,9 +93,9 @@ func _physics_process(delta):
 	var disconect = velocity.dot(up_direction) >= 1
 	velocity = get_real_velocity()
 	
-	if Input.is_action_pressed("roll"):
+	if Input.is_action_pressed("roll") and is_on_floor():
 	
-		deceleration = 0
+		deceleration = 1
 	
 	else:
 		deceleration = 10

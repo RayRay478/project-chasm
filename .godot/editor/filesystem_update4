@@ -1,3 +1,4 @@
-res://jam_lev.tscn
-res://scripts/main.gd
-res://scene/jam_lev.tscn
+res://entity/Character.tscn
+res://scene/Test.tscn
+res://scripts/Character.gd
+res://scripts/animation stuff.gd

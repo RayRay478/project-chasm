@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=4 uid="uid://bi1nyeb4xqty3"]
+[gd_scene load_steps=21 format=4 uid="uid://bi1nyeb4xqty3"]
 
-[ext_resource type="Script" uid="uid://dx84218kjv8fc" path="res://scripts/Character.gd" id="1_afful"]
+[ext_resource type="Script" uid="uid://dx84218kjv8fc" path="res://scripts/Character.gd" id="1_l3sln"]
+[ext_resource type="Script" uid="uid://ckxe5e1l1t3e1" path="res://scripts/camera.gd" id="2_l3sln"]
 [ext_resource type="Script" uid="uid://ce02r8141wq6t" path="res://scripts/animation stuff.gd" id="3_l3sln"]
 [ext_resource type="Texture2D" uid="uid://btlw3dpaxgr8f" path="res://model/TEX_Sonic.png" id="3_rdgsq"]
 
@@ -1005,14 +1006,13 @@ properties/2/path = NodePath("Pivot/SONICGOOD/AnimationPlayer:current_animation"
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("_body")]
+[node name="Character" type="CharacterBody3D"]
 collision_layer = 2
 slide_on_ceiling = false
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 0.5
-script = ExtResource("1_afful")
-_body = NodePath("Pivot/SONICGOOD")
+script = ExtResource("1_l3sln")
 
 [node name="SpeedLooky" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1575613, -0.0072369576)
@@ -1026,19 +1026,23 @@ shape = SubResource("SphereShape3D_r1b30")
 
 [node name="FloorCheck" type="RayCast3D" parent="."]
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="Camera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_l3sln")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
-spring_length = 7.0
+[node name="CameraPivot" type="Node3D" parent="Camera"]
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+[node name="SpringArm3D" type="SpringArm3D" parent="Camera/CameraPivot"]
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="Camera/CameraPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881898, 0, -0.25881898, 0.9659259, 0, 0.7871938, 1.0265493)
 fov = 90.0
 
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="SONICGOOD" type="Node3D" parent="Pivot" node_paths=PackedStringArray("_character", "animation_player")]
-transform = Transform3D(-2.3, 0, 2.0107238e-07, 0, 2.3, 0, -2.0107238e-07, 0, -2.3, 0, 0, 0)
+transform = Transform3D(-2.3, 0, 2.0107238e-07, 0, 2.3, 0, -2.0107238e-07, 0, -2.3, 0, -0.5, 0)
 script = ExtResource("3_l3sln")
 _character = NodePath("../..")
 animation_player = NodePath("../AnimationPlayer")
@@ -1300,6 +1304,7 @@ bones/35/rotation = Quaternion(5.5380343e-07, 0.95957464, -0.28145435, -2.827950
 bones/35/scale = Vector3(1, 0.99999994, 1.0000001)
 
 [node name="Sonic_MESH" type="MeshInstance3D" parent="Pivot/SONICGOOD/Sonic_RIG/Skeleton3D"]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_l3sln")
 mesh = SubResource("ArrayMesh_4aesf")
 skin = SubResource("Skin_pjyqm")
