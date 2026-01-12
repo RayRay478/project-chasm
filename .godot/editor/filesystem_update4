@@ -2,3 +2,4 @@ res://entity/Character.tscn
 res://scripts/player.gd
 res://scene/jam_lev.tscn
 res://scene/sa2level.tscn
+res://scripts/Character.gd

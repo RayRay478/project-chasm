@@ -36,7 +36,7 @@ var _gravity := -30.0
 var _gravity_normal: Vector3 = Vector3.UP 
 
 #var slope_mag_dot: float
-#var slope_normal: Vector3 = get_floor_normal():
+var slope_normal: Vector3 = get_floor_normal()
 	#set(new_normal):
 	#	slope_normal = new_normal
 	#	slope_mag_dot = slope_normal.dot(_gravity_normal)
@@ -98,21 +98,24 @@ func _physics_process(delta: float) -> void:
 	var previous_velocity = velocity.dot(up_direction)
 
 	
-	if direction and is_on_floor():
+	if direction:
 		if velocity.slide(up_direction).length() < move_speed:
+			# main acceleration
 			velocity = velocity.slide(up_direction).move_toward(direction * move_speed, acceleration * delta)+previous_velocity*up_direction
+			add_debug_info("FUCK IM NOT TURING")
 		else:
+			# turning code
 			velocity = velocity.slide(up_direction).slerp(direction * move_speed, acceleration * delta)+previous_velocity*up_direction
+			add_debug_info("IM TURNING NIGGA")
+
 	else:
 		velocity = velocity.slerp(Vector3.ZERO,delta * deceleration)
-	
-	
-	
+
 	velocity.y = y_velocity + _gravity * delta
 
 	var is_starting_jump := Input.is_action_just_pressed("jump") and is_on_floor()
 	if is_starting_jump:
-		velocity.y += jump_impulse
+		velocity += up_direction * jump_impulse
 
 
 	if direction.length() > 0.2:
@@ -146,6 +149,7 @@ func _physics_process(delta: float) -> void:
 	
 
 	add_debug_info("Input Vector: " + readable_vector(input_3))
+	add_debug_info("Driection: " + readable_vector(direction))
 	add_debug_info("Speed: " + readable_vector(velocity))
 	add_debug_info("Target Angle: " + readable_float(target_angle))
 	#add_debug_info("Ground Angle " + readable_float(rad_to_deg(acos(slope_mag_dot))))
