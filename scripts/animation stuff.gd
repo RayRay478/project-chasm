@@ -30,7 +30,7 @@ func animate(_velocity: Vector3) -> void:
 		return
 
 	animation_player.play("Idle")
-
+	return
 func play_jump_animation(jump_type: String = "Jump") -> void:
 	if animation_player:
 		animation_player.play(jump_type)

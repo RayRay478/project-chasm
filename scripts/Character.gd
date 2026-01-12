@@ -63,7 +63,6 @@ func _physics_process(delta):
 	# calculate the forward direction based on input and direction from the floor and the camera
 	var calcForward = camera.global_position.direction_to(global_position).slide(up_direction)
 	# 
-	
 	var direction = ((calcForward.rotated(up_direction,deg_to_rad(90))*-input_dir.x)+(calcForward*-input_dir.y)).normalized()
 	
 	# keep a copy of the previous velocity

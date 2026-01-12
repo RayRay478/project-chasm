@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=4 uid="uid://bi1nyeb4xqty3"]
+[gd_scene load_steps=23 format=4 uid="uid://bi1nyeb4xqty3"]
 
-[ext_resource type="Script" uid="uid://dx84218kjv8fc" path="res://scripts/Character.gd" id="1_l3sln"]
+[ext_resource type="Script" uid="uid://bghi73ufftdui" path="res://scripts/player.gd" id="1_l3sln"]
 [ext_resource type="Script" uid="uid://ckxe5e1l1t3e1" path="res://scripts/camera.gd" id="2_l3sln"]
 [ext_resource type="Script" uid="uid://ce02r8141wq6t" path="res://scripts/animation stuff.gd" id="3_l3sln"]
 [ext_resource type="Texture2D" uid="uid://btlw3dpaxgr8f" path="res://model/TEX_Sonic.png" id="3_rdgsq"]
@@ -8,6 +8,9 @@
 [sub_resource type="BoxMesh" id="BoxMesh_rdgsq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r1b30"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l3sln"]
+height = 0.001
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3sln"]
 albedo_texture = ExtResource("3_rdgsq")
@@ -708,7 +711,7 @@ tracks/18/keys = PackedFloat32Array(0, 1, -5.543278e-07, -0.95957464, 0.28145435
 
 [sub_resource type="Animation" id="Animation_aykeb"]
 resource_name = "Run"
-length = 0.41666666
+length = 0.5517
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -1006,6 +1009,13 @@ properties/2/path = NodePath("Pivot/SONICGOOD/AnimationPlayer:current_animation"
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
+[sub_resource type="LabelSettings" id="LabelSettings_l3sln"]
+font_size = 28
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0.5597201, 0.5597201, 0.5597201, 0.58431375)
+
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 2
 slide_on_ceiling = false
@@ -1013,6 +1023,8 @@ floor_constant_speed = true
 floor_block_on_wall = false
 floor_snap_length = 0.5
 script = ExtResource("1_l3sln")
+acceleration = 40.0
+rotation_speed = 5.0
 
 [node name="SpeedLooky" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1575613, -0.0072369576)
@@ -1022,12 +1034,16 @@ visible = false
 mesh = SubResource("BoxMesh_rdgsq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_r1b30")
 
 [node name="FloorCheck" type="RayCast3D" parent="."]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloorCheck"]
+mesh = SubResource("CylinderMesh_l3sln")
+
 [node name="Camera" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0727012, 0)
 script = ExtResource("2_l3sln")
 
 [node name="CameraPivot" type="Node3D" parent="Camera"]
@@ -1042,7 +1058,7 @@ fov = 90.0
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="SONICGOOD" type="Node3D" parent="Pivot" node_paths=PackedStringArray("_character", "animation_player")]
-transform = Transform3D(-2.3, 0, 2.0107238e-07, 0, 2.3, 0, -2.0107238e-07, 0, -2.3, 0, -0.5, 0)
+transform = Transform3D(2.3, 0, 0, 0, 2.3, 0, 0, 0, 2.3, 0, 0, 0)
 script = ExtResource("3_l3sln")
 _character = NodePath("../..")
 animation_player = NodePath("../AnimationPlayer")
@@ -1351,3 +1367,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.433013, 0, 0.25)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_rdgsq")
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Debug"]
+anchors_preset = -1
+anchor_left = 0.0026041667
+anchor_top = -0.026234567
+anchor_right = 0.12934028
+anchor_bottom = 0.2638889
+offset_left = 734.0
+offset_top = 33.0
+offset_right = 1000.0
+offset_bottom = 123.0
+text = "Default Text"
+label_settings = SubResource("LabelSettings_l3sln")
+metadata/_edit_use_anchors_ = true

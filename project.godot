@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="project-chasm"
-run/main_scene="uid://we8ycnpovrj7"
+run/main_scene="uid://cfvl22meeekji"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://Icon.png"
+config/icon="uid://dk5y1mirit6dd"
 
 [editor]
 
@@ -63,6 +63,7 @@ jump={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+3d/default_gravity=-10.0
 
 [rendering]
 

@@ -12,7 +12,12 @@ sky_material = SubResource("ProceduralSkyMaterial_qo2m2")
 
 [sub_resource type="Environment" id="Environment_md5wc"]
 background_mode = 2
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 2.25
 sky = SubResource("Sky_3xqac")
+ambient_light_source = 3
+ambient_light_color = Color(0.63443667, 0.6849254, 0.8566792, 1)
+ambient_light_sky_contribution = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhiys"]
 albedo_texture = ExtResource("4_s02xw")
@@ -28,15 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_md5wc")
-
-[node name="MeshTest" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_hhiys")
-mesh = ExtResource("4_tc56f")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshTest"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshTest/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_rfs48")
 
 [node name="SpeedBooster" parent="." instance=ExtResource("5_arofs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.489, -3, -102.39)
@@ -66,6 +62,17 @@ text = "JOIN"
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://bi1nyeb4xqty3")
 spawn_path = NodePath("..")
+
+[node name="MeshTest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 7.54979e-08, 0, -7.54979e-08, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_hhiys")
+mesh = ExtResource("4_tc56f")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshTest"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshTest/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_rfs48")
 
 [connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]
