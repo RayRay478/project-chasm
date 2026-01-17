@@ -1,0 +1,9 @@
+res://entity/Character.tscn::38ec18b9b15ed14036501af5e6d8d98b::1768268395::res://.godot/exported/133200997/export-f5fef4e84631b9433007d1635181d8cd-Character.scn
+res://entity/speed_booster.tscn::1e1ec4ada2afc35dc9499c3c629689f7::1767988176::res://.godot/exported/133200997/export-92ebf3c887bbcf6b52c1917025bb51c4-speed_booster.scn
+res://entity/tripwire_update.tscn::3f25ec56fdc6e3b804bdc45103a6e7c1::1767988176::res://.godot/exported/133200997/export-df5e0ac4ab64e4022d5b558ddabd0513-tripwire_update.scn
+res://model/gobot/materials/eye_mat.tres::746215ac913c0c9019a1060e9d88ecbc::1767988176::res://.godot/exported/133200997/export-f250333b5d73e4357ab52c78802fd688-eye_mat.res
+res://model/gobot/gobot_skin.tscn::c5fcc4e6aef15eadc5c068b740a43266::1767988176::res://.godot/exported/133200997/export-940771175954dcf97a3b34c3a41c50de-gobot_skin.scn
+res://model/TripWiremat.tres::21391893ac03130c6803c7b52fda0c29::1767988176::res://.godot/exported/133200997/export-826cfa26edab7bab9fa8f02add431b4a-TripWiremat.res
+res://scene/jam_lev.tscn::789809481247b3292bbd86be3765cbd9::1768191901::res://.godot/exported/133200997/export-9259c5e19e704d9d84b15194e87b73f9-jam_lev.scn
+res://scene/sa2level.tscn::b0f338652878a5cb9cccf7f70866696f::1768248583::res://.godot/exported/133200997/export-b48a43d78dad2f8268e13a7985f6bede-sa2level.scn
+res://scene/Test.tscn::a77c664a1c91c976a6b8eec9138baf6b::1768096882::res://.godot/exported/133200997/export-ef7a88abb8c9f508c85c5b56aaba509a-Test.scn

@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://we8ycnpovrj7"]
 
 [ext_resource type="Script" uid="uid://dw7r8a6sb66fm" path="res://scripts/main.gd" id="1_ewxfs"]
-[ext_resource type="Texture2D" uid="uid://dl5lsk3ecoy8x" path="res://model/Untitled.png" id="4_s02xw"]
-[ext_resource type="ArrayMesh" uid="uid://0ejpok1hebii" path="res://model/MeshTest.obj" id="4_tc56f"]
+[ext_resource type="Texture2D" uid="uid://dl5lsk3ecoy8x" path="res://model/otherstages/Untitled.png" id="4_s02xw"]
+[ext_resource type="ArrayMesh" uid="uid://0ejpok1hebii" path="res://model/otherstages/MeshTest.obj" id="4_tc56f"]
 [ext_resource type="PackedScene" uid="uid://cbdsxiqqrbgo2" path="res://entity/speed_booster.tscn" id="5_arofs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qo2m2"]
