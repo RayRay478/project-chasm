@@ -7,12 +7,12 @@ const PLAYER = preload("res://entity/Character.tscn")
 var peer = ENetMultiplayerPeer.new()
 
 func _on_host_pressed():
-	peer.create_server(25565)
+	peer.create_server(25465)
 	multiplayer.multiplayer_peer = peer
 	
 	multiplayer.peer_connected.connect(
 		func(pid):
-			print("Peer " + str(pid) + " has joined the game!")
+			print("Nigga " + str(pid) + " has joined the game!")
 			add_player(pid)
 	)
 	
@@ -20,7 +20,7 @@ func _on_host_pressed():
 	multiplayer_ui.hide()
 
 func _on_join_pressed():
-	peer.create_client("localhost", 25565)
+	peer.create_client("localhost", 25465)
 	multiplayer.multiplayer_peer = peer
 	multiplayer_ui.hide()
 

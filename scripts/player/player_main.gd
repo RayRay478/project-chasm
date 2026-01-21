@@ -37,7 +37,7 @@ var abs_gsp: float = 0.0
 
 var _camera_input_direction := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK
-var _gravity_normal: Vector3 = Vector3.UP 
+#var _gravity_normal: Vector3 = Vector3.UP 
 
 #var slope_mag_dot: float
 var slope_normal: Vector3 = get_floor_normal()
@@ -47,7 +47,7 @@ var slope_normal: Vector3 = get_floor_normal()
 
 
 @onready var _camera: Camera3D = $Camera/CameraPivot/SpringArm3D/Camera3D
-@onready var _body: Node3D = $Sonic
+@onready var _body: Node3D = $Player/Sonic
 
 @onready var debug_label: Label = $Debug/Label
 
@@ -66,6 +66,9 @@ func add_debug_info(info:String) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _enter_tree():
+	set_multiplayer_authority(int(str(name)))
 
 
 func _ready():
@@ -101,21 +104,25 @@ func _physics_process(delta: float) -> void:
 	
 	var previous_velocity = velocity.dot(up_direction)
 	var acclspeed: float = velocity.length() / (move_speed)
+	
 
 	
 	if direction:
 
 
-		if velocity.slide(up_direction).length() < move_speed * 8/10:
+		if velocity.slide(up_direction).length() < move_speed:
+
 			# main acceleration
-			#velocity = velocity.slide(up_direction).move_toward(direction * move_speed, acceleration * delta)+previous_velocity*up_direction
-			velocity = velocity.slide(up_direction).move_toward(direction * move_speed, acceleration_curve.sample(0.4))
+		#	velocity = velocity.slide(up_direction).move_toward(direction * move_speed, acceleration * delta)+previous_velocity*up_direction
+			velocity = velocity.slide(up_direction).move_toward(direction * move_speed, acceleration_curve.sample(move_speed))
 			add_debug_info("FUCK IM NOT TURNING")
+
 		else:
 			# turning code
-			velocity = velocity.slide(up_direction).move_toward(direction * move_speed, acceleration_curve.sample(acclspeed)+delta)
+			velocity = velocity.slide(up_direction).move_toward(direction * move_speed,1)
 			rotation_speed = 7
 			add_debug_info("IM TURNING NIGGA")
+
 
 	else:
 		velocity = velocity.slerp(Vector3.ZERO,delta * deceleration)+previous_velocity*up_direction

@@ -1,4 +1,3 @@
 res://entity/Character.tscn
-res://scene/jam_lev.tscn
-res://scene/sa2level.tscn
-res://scene/Test.tscn
+res://scripts/main.gd
+res://scripts/player/player_animation.gd

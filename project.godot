@@ -19,10 +19,6 @@ config/icon="uid://dk5y1mirit6dd"
 
 movie_writer/movie_file="D:/My Files/Game Dev/Indie/Bun N Gun/BunNGun2/momentum_platform_framework/record.avi"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/nexus_importer/plugin.cfg")
-
 [input]
 
 ui_accept={

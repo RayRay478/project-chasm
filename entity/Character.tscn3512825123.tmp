@@ -14,7 +14,7 @@
 
 [sub_resource type="Curve" id="Curve_l3sln"]
 bake_resolution = 305
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.05975986, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_6usoo"]
@@ -32,13 +32,13 @@ height = 0.001
 albedo_texture = ExtResource("4_18e4a")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rdgsq"]
-properties/0/path = NodePath("Player/Sonic/AnimationPlayer:current_animation")
+properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:position")
+properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("Player/Sonic:rotation")
+properties/2/path = NodePath("Pivot/SONICGOOD/AnimationPlayer:current_animation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
@@ -82,14 +82,12 @@ shape = SubResource("SphereShape3D_r1b30")
 visible = false
 mesh = SubResource("CylinderMesh_l3sln")
 
-[node name="Player" type="Node3D" parent="."]
-
-[node name="Sonic" parent="Player" node_paths=PackedStringArray("_character", "animation_player") instance=ExtResource("2_18e4a")]
+[node name="Sonic" parent="." node_paths=PackedStringArray("_character", "animation_player") instance=ExtResource("2_18e4a")]
 script = ExtResource("3_l3sln")
-_character = NodePath("../..")
+_character = NodePath("..")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="Skeleton3D" parent="Player/Sonic/char_grp/rig" index="0"]
+[node name="Skeleton3D" parent="Sonic/char_grp/rig" index="0"]
 bones/0/rotation = Quaternion(0, 0.7071068, 0.7071068, 0)
 bones/1/rotation = Quaternion(0.2238086, 0, 0, 0.9746331)
 bones/2/position = Vector3(-0.20360903, 0.061697654, 1.060582)
@@ -231,13 +229,11 @@ bones/209/position = Vector3(-0.31916255, 0.6662258, -0.26063064)
 bones/209/rotation = Quaternion(-0.32053664, -0.7221385, 0.39453992, 0.46915936)
 bones/210/rotation = Quaternion(-0.016231852, 0.7069205, 0.70692044, -0.016231854)
 
-[node name="Body" parent="Player/Sonic/char_grp/rig/Skeleton3D" index="0"]
+[node name="Body" parent="Sonic/char_grp/rig/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_jk34n")
 
-[node name="AnimationPlayer" parent="Player/Sonic" index="2"]
+[node name="AnimationPlayer" parent="Sonic" index="2"]
 script = ExtResource("5_18e4a")
-
-[node name="Node3D" type="Node3D" parent="Player"]
 
 [node name="Camera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0727012, 0)
@@ -303,4 +299,4 @@ position = Vector2(529, 324.75)
 scale = Vector2(0.83117723, 0.83117723)
 texture = ExtResource("9_qv5lp")
 
-[editable path="Player/Sonic"]
+[editable path="Sonic"]

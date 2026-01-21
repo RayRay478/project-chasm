@@ -34,8 +34,6 @@ var speed_margin = 10.0
 
 @onready var _body: Node3D = $Sonic
 
-func _enter_tree():
-	set_multiplayer_authority(int(str(name)))
 
 
 
