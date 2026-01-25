@@ -1,12 +1,12 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1768971572
+::res://::1769361847
 export_presets.cfg::TextFile::-1::1768268669::0::1::::<><><>0<>0<><>::
 glibit.png::CompressedTexture2D::7924586101971855389::1768181666::1768181741::1::::<><><>0<>0<>31377737dae7955fb0f57a8dec227a20<>res://.godot/imported/glibit.png-d007df1f6cf223cdc9223475550588b6.ctex::
 Icon.png::CompressedTexture2D::7184207129579724838::1767988176::1767988176::1::::<><><>0<>0<>c0be17c887b0050d60b97bbb7185c2ca<>res://.godot/imported/Icon.png-33e63688031d53466d4d656c73cf10ca.ctex::
 new_script.gd::GDScript::9096834765992265644::1768082546::0::1::::<>Node<><>0<>0<><>::
 ::res://addons/::1768971563
-::res://entity/::1768971508
-Character.tscn::PackedScene::3002437647349815528::1768971508::0::1::::<><><>0<>0<><>::uid://bghi73ufftdui::::res://scripts/player/player_main.gd<>uid://b6yagurvca661::::res://model/blendfiles/characters/Sonic_Rigged.blend<>uid://ckxe5e1l1t3e1::::res://scripts/player/player_camera.gd<>uid://ce02r8141wq6t::::res://scripts/player/player_animation.gd<>uid://b1l4l1g5bu4kx::::res://textures/UV_sonic_sd_v001.png<>uid://bynxfy1fjw6l8::::res://ui/UI/speed.png<>uid://dgrfxo1v4x1bv::::res://scripts/player/constantkeyframes.gd<>uid://1p33m6q4ai0j::::res://ui/UI/big ring.png<>uid://dff8jeuonmkop::::res://ui/UI/HP BOX.png<>uid://oqmtvv0resgl::::res://ui/UI/SONICBOX.png<>uid://b4s2yimhryi4n::::res://ui/UI/uiii.png
+::res://entity/::1768971850
+Character.tscn::PackedScene::3002437647349815528::1768971850::0::1::::<><><>0<>0<><>::uid://bghi73ufftdui::::res://scripts/player/player_main.gd<>uid://b6yagurvca661::::res://model/blendfiles/characters/Sonic_Rigged.blend<>uid://ckxe5e1l1t3e1::::res://scripts/player/player_camera.gd<>uid://ce02r8141wq6t::::res://scripts/player/player_animation.gd<>uid://b1l4l1g5bu4kx::::res://textures/UV_sonic_sd_v001.png<>uid://bynxfy1fjw6l8::::res://ui/UI/speed.png<>uid://dgrfxo1v4x1bv::::res://scripts/player/constantkeyframes.gd<>uid://1p33m6q4ai0j::::res://ui/UI/big ring.png<>uid://dff8jeuonmkop::::res://ui/UI/HP BOX.png<>uid://oqmtvv0resgl::::res://ui/UI/SONICBOX.png<>uid://b4s2yimhryi4n::::res://ui/UI/uiii.png
 speed_booster.tscn::PackedScene::4850357769069425831::1767988176::0::1::::<><><>0<>0<><>::res://scripts/SpeedBooster.gd
 tripwire_update.tscn::PackedScene::6534336480008529701::1767988176::0::1::::<><><>0<>0<><>::uid://d2deo1y3314n3::::res://model/TripwireUpdate.fbx<>uid://py0wx2ll5h57::::res://model/TripWiremat.tres
 ::res://model/::1768673657
@@ -136,14 +136,14 @@ f36932b7.png::CompressedTexture2D::4887420730124642161::1768095564::1768673659::
 jam_lev.tscn::PackedScene::1267660286764566424::1768673628::0::1::::<><><>0<>0<><>::uid://c75mfuvuo6ouv::::res://model/blendfiles/stages/JamLev.blend<>uid://dw7r8a6sb66fm::::res://scripts/main.gd
 sa2level.tscn::PackedScene::5167855058622845634::1768971274::0::1::::<><><>0<>0<><>::uid://dw7r8a6sb66fm::::res://scripts/main.gd<>uid://bkowhtn2w5gt7::::res://model/otherstages/sa2b_testlevel/Textures/4435f9ba.png<>uid://j1gxmvxyriqk::::res://model/otherstages/sa2b_testlevel/Textures/5a67bd19.png<>uid://sjsixptv4dq4::::res://model/otherstages/sa2b_testlevel/Textures/da0bee91.png<>uid://egmbroqulg7i::::res://model/otherstages/sa2b_testlevel/Textures/25822719.png<>uid://dr1oml6fe0d04::::res://model/otherstages/sa2b_testlevel/Textures/0374d0d9.png<>uid://cbvrdt2h1ggkv::::res://model/otherstages/sa2b_testlevel/Textures/f36932b7.png<>uid://cso688qsxi8k4::::res://model/otherstages/sa2b_testlevel/Textures/b7640988.png<>uid://bidltjvdexbog::::res://model/otherstages/sa2b_testlevel/Textures/3caf62fc.png<>uid://c7onl5jhqfmo2::::res://model/otherstages/sa2b_testlevel/Textures/b4ee04bb.png<>uid://bra8vouqk4t2k::::res://model/otherstages/sa2b_testlevel/Textures/2623e7c8.png<>uid://dudk700el7fp2::::res://model/otherstages/sa2b_testlevel/Textures/010c4b9a.png<>uid://b345ixrw6bhjw::::res://model/otherstages/sa2b_testlevel/Textures/2df89fb2.png<>uid://c3wtd75m7dsdo::::res://model/otherstages/sa2b_testlevel/Textures/62cb4340.png<>uid://dvkblyb68wlht::::res://model/otherstages/sa2b_testlevel/Textures/480d43d6.png<>uid://wk36g6ir7dw8::::res://model/otherstages/sa2b_testlevel/Textures/2ca2a0bd.png<>uid://d2vj4icycxrg8::::res://model/otherstages/sa2b_testlevel/Textures/25dbb4c1.png<>uid://cgkkcmnihn653::::res://model/otherstages/sa2b_testlevel/Textures/b7bd407e.png
 Test.tscn::PackedScene::1554458716698205502::1768673657::0::1::::<><><>0<>0<><>::uid://dw7r8a6sb66fm::::res://scripts/main.gd<>uid://dl5lsk3ecoy8x::::res://model/otherstages/Untitled.png<>uid://0ejpok1hebii::::res://model/otherstages/MeshTest.obj<>uid://cbdsxiqqrbgo2::::res://entity/speed_booster.tscn
-::res://scripts/::1768971274
-main.gd::GDScript::8770567868031185210::1768971274::0::1::::<>Node<><>0<>0<><>::
+::res://scripts/::1768971788
+main.gd::GDScript::8770567868031185210::1768971788::0::1::::<>Node<><>0<>0<><>::
 SpeedBooster.gd::GDScript::1618651539257870096::1767988176::0::1::::<>Area3D<><>0<>0<><>::
 ui.gd::GDScript::3285073767247708748::1768433325::0::1::::<>Node2D<><>0<>0<><>::
-::res://scripts/player/::1768971508
+::res://scripts/player/::1768971850
 Character.gd::GDScript::8843540346916574696::1768971508::0::1::::<>CharacterBody3D<><>0<>0<><>::
 constantkeyframes.gd::GDScript::7615834969435807175::1768782584::0::1::::<>AnimationPlayer<><>0<>1<><>::
-player_animation.gd::GDScript::5106877677879629665::1768946210::0::1::::Body<>Node3D<><>0<>0<><>::
+player_animation.gd::GDScript::5106877677879629665::1768971850::0::1::::Body<>Node3D<><>0<>0<><>::
 player_camera.gd::GDScript::5522507184691742634::1768074103::0::1::::<>Node3D<><>0<>0<><>::
 player_main.gd::GDScript::2822548772931304260::1768971508::0::1::::<>CharacterBody3D<><>0<>0<><>::
 ::res://testlve/::1768085806

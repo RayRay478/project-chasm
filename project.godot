@@ -15,6 +15,10 @@ run/main_scene="uid://cfvl22meeekji"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://dk5y1mirit6dd"
 
+[autoload]
+
+PlayerMain="*res://scripts/player/player_main.gd"
+
 [editor]
 
 movie_writer/movie_file="D:/My Files/Game Dev/Indie/Bun N Gun/BunNGun2/momentum_platform_framework/record.avi"
