@@ -1,0 +1,167 @@
+[gd_scene load_steps=11 format=3 uid="uid://c351askmds8fq"]
+
+[ext_resource type="Texture2D" uid="uid://bgc3gwgclts1v" path="res://textures/menus/1.png" id="1_7b35i"]
+[ext_resource type="Shader" uid="uid://c6gcda2i85vuw" path="res://scene/menus/TitleScreen/ScrollShader.gdshader" id="1_d0p0f"]
+[ext_resource type="Script" uid="uid://bhu8lvdbd7s5q" path="res://scene/menus/TitleScreen/testboy.gd" id="4_i04yi"]
+[ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="4_ijpmh"]
+[ext_resource type="AudioStream" uid="uid://cbq13y2sxu5up" path="res://audio/goofyahhsonic4.wav" id="4_p76tj"]
+[ext_resource type="Texture2D" uid="uid://clju6p166v628" path="res://textures/menus/testboy.png" id="6_glcqy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0j7cq"]
+shader = ExtResource("1_d0p0f")
+shader_parameter/speed = 0.13
+
+[sub_resource type="Animation" id="Animation_p76tj"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(219.66667, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(119.333336, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6w4ye"]
+resource_name = "bounce"
+length = 0.283335
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 0.071793675),
+"update": 0,
+"values": [Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_glcqy"]
+_data = {
+&"RESET": SubResource("Animation_p76tj"),
+&"bounce": SubResource("Animation_6w4ye")
+}
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.006
+offset_right = 1272.32
+offset_bottom = 720.0
+stretch = true
+stretch_shrink = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(426, 240)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_0j7cq")
+offset_top = 216.0
+offset_right = 426.0
+offset_bottom = 256.0
+texture = ExtResource("1_7b35i")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_0j7cq")
+offset_top = -16.0
+offset_right = 426.0
+offset_bottom = 24.0
+texture = ExtResource("1_7b35i")
+stretch_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="Testboy" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("animation_player", "r")]
+position = Vector2(219.66667, 119.333336)
+texture = ExtResource("6_glcqy")
+script = ExtResource("4_i04yi")
+animation_player = NodePath("AnimationPlayer")
+r = NodePath("RhythmNotifier")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/SubViewportContainer/SubViewport/Testboy"]
+stream = ExtResource("4_p76tj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/SubViewportContainer/SubViewport/Testboy"]
+libraries = {
+&"": SubResource("AnimationLibrary_glcqy")
+}
+
+[node name="RhythmNotifier" type="Node" parent="CanvasLayer/SubViewportContainer/SubViewport/Testboy" node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("4_ijpmh")
+bpm = 145.0
+beat_length = 0.41379310344827586
+audio_stream_player = NodePath("../AudioStreamPlayer")
+running = true

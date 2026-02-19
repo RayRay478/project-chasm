@@ -1,0 +1,14 @@
+Node3D
+Node
+OpenXRRenderModel
+MeshInstance3D
+StaticBody3D
+CollisionPolygon3D
+RigidBody3D
+ConductedAnimationPlayer
+ConductedTimer
+AnimationPlayer
+AudioStreamPlayer
+AudioStreamPlayer2D
+CanvasLayer
+StaticBody2D

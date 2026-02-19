@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://c351askmds8fq"]
+
+[ext_resource type="Texture2D" uid="uid://bgc3gwgclts1v" path="res://textures/menus/1.png" id="1_7b35i"]
+[ext_resource type="Shader" uid="uid://c6gcda2i85vuw" path="res://scene/menus/TitleScreen/ScrollShader.gdshader" id="1_d0p0f"]
+[ext_resource type="Script" uid="uid://bhu8lvdbd7s5q" path="res://scene/menus/TitleScreen/testboy.gd" id="4_i04yi"]
+[ext_resource type="AudioStream" uid="uid://cbq13y2sxu5up" path="res://audio/goofyahhsonic4.wav" id="4_p76tj"]
+[ext_resource type="Texture2D" uid="uid://clju6p166v628" path="res://textures/menus/testboy.png" id="6_glcqy"]
+[ext_resource type="Script" uid="uid://dsk3wv1yb4rho" path="res://addons/conductor/conducted_timer.gd" id="6_p76tj"]
+[ext_resource type="Script" uid="uid://cee2638n8ojsx" path="res://addons/conductor/conducted_animation_player.gd" id="7_6w4ye"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0j7cq"]
+shader = ExtResource("1_d0p0f")
+shader_parameter/speed = 0.13
+
+[sub_resource type="Animation" id="Animation_c60ls"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Testboy:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_glcqy"]
+resource_name = "bonuce"
+length = 3.3333368
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Testboy:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.70000005),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.3, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x6xdj"]
+_data = {
+&"RESET": SubResource("Animation_c60ls"),
+&"bonuce": SubResource("Animation_glcqy")
+}
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.006
+offset_right = 1272.32
+offset_bottom = 720.0
+stretch = true
+stretch_shrink = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(426, 240)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_0j7cq")
+offset_top = 216.0
+offset_right = 426.0
+offset_bottom = 256.0
+texture = ExtResource("1_7b35i")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_0j7cq")
+offset_top = -16.0
+offset_right = 426.0
+offset_bottom = 24.0
+texture = ExtResource("1_7b35i")
+stretch_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+stream = ExtResource("4_p76tj")
+
+[node name="Testboy" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("animation_player")]
+position = Vector2(219.66667, 119.333336)
+texture = ExtResource("6_glcqy")
+script = ExtResource("4_i04yi")
+animation_player = NodePath("ConductedAnimationPlayer")
+
+[node name="ConductedAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/SubViewportContainer/SubViewport/Testboy"]
+root_node = NodePath("../../AudioStreamPlayer")
+libraries = {
+&"": SubResource("AnimationLibrary_x6xdj")
+}
+movie_quit_on_finish = true
+script = ExtResource("7_6w4ye")
+round_start_beat = true
+metadata/_custom_type_script = "uid://cee2638n8ojsx"
+
+[node name="ConductedTimer" type="Node" parent="CanvasLayer/SubViewportContainer/SubViewport/Testboy"]
+script = ExtResource("6_p76tj")
+autostart = true
+metadata/_custom_type_script = "uid://dsk3wv1yb4rho"
+
+[connection signal="timeout" from="CanvasLayer/SubViewportContainer/SubViewport/Testboy/ConductedTimer" to="CanvasLayer/SubViewportContainer/SubViewport/Testboy" method="_on_conducted_timer_timeout"]

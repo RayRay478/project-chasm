@@ -1,0 +1,224 @@
+[gd_scene load_steps=24 format=3 uid="uid://bi1nyeb4xqty3"]
+
+[ext_resource type="Script" uid="uid://bghi73ufftdui" path="res://scripts/player/player_main.gd" id="1_l3sln"]
+[ext_resource type="Script" uid="uid://ckxe5e1l1t3e1" path="res://scripts/player/player_camera.gd" id="2_l3sln"]
+[ext_resource type="Script" uid="uid://ce02r8141wq6t" path="res://scripts/player/player_animation.gd" id="3_l3sln"]
+[ext_resource type="Texture2D" uid="uid://bynxfy1fjw6l8" path="res://ui/UI/speed.png" id="5_6usoo"]
+[ext_resource type="Texture2D" uid="uid://1p33m6q4ai0j" path="res://ui/UI/big ring.png" id="7_1gvlq"]
+[ext_resource type="Texture2D" uid="uid://dff8jeuonmkop" path="res://ui/UI/HP BOX.png" id="7_qv5lp"]
+[ext_resource type="Texture2D" uid="uid://oqmtvv0resgl" path="res://ui/UI/SONICBOX.png" id="8_18e4a"]
+[ext_resource type="Texture2D" uid="uid://cpdibnjf1nusx" path="res://ui/UI/hp.png" id="11_s3a6p"]
+[ext_resource type="Script" uid="uid://bhfulgl5vuoun" path="res://scripts/character-scripts/buttons/tails_button.gd" id="12_2gyjb"]
+[ext_resource type="Texture2D" uid="uid://djc5wue6k2ewe" path="res://ui/UI/ring.png" id="12_6hqyq"]
+[ext_resource type="Script" uid="uid://dubfpdymvtp4b" path="res://scripts/character-scripts/buttons/sonic_button.gd" id="12_remla"]
+[ext_resource type="Texture2D" uid="uid://b42fgfa18tter" path="res://ui/UI/TIME.png" id="13_kce15"]
+[ext_resource type="Script" uid="uid://xgsicl45my74" path="res://scripts/character-scripts/buttons/knuckles_button.gd" id="14_m3t5y"]
+[ext_resource type="Texture2D" uid="uid://bf43812nj33ap" path="res://ui/UI/HP CHARACTERS/sonic1.png" id="14_tiiyr"]
+[ext_resource type="Texture2D" uid="uid://b23saonqqfllq" path="res://ui/UI/HP CHARACTERS/tails1.png" id="16_am7fw"]
+[ext_resource type="Texture2D" uid="uid://bim4fk3y86ify" path="res://ui/UI/HP CHARACTERS/knuckles1.png" id="18_bm2rt"]
+
+[sub_resource type="Curve" id="Curve_am7fw"]
+_data = [Vector2(0, 0), 0.0, 3.41113, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6usoo"]
+_data = [Vector2(0.014403291, 0.027756333), 0.0, 3.1519809, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_jk34n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r1b30"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l3sln"]
+height = 0.001
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rdgsq"]
+properties/0/path = NodePath("Player/Sonic/AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Player/Sonic:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3sln"]
+line_spacing = 0.0
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0.5597201, 0.5597201, 0.5597201, 0.58431375)
+shadow_offset = Vector2(0, 0)
+
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("camera", "body", "debug_label")]
+collision_layer = 2
+slide_on_ceiling = false
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_snap_length = 0.5
+script = ExtResource("1_l3sln")
+acceleration = 75.0
+acceleration_curve = SubResource("Curve_am7fw")
+deceleration = 5.0
+rotation_speed = 5.0
+jump_impulse = 10.0
+jump_max = 30.0
+turnspeed_curve = SubResource("Curve_6usoo")
+_gravity = -45.0
+mouse_sensitivity = 0.01
+camera = NodePath("Camera/CameraPivot/SpringArm3D/Camera3D")
+body = NodePath("Player")
+debug_label = NodePath("Debug/Label")
+
+[node name="SpeedLooky" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1575613, -0.0072369576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SpeedLooky"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("SphereMesh_jk34n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_r1b30")
+
+[node name="FloorCheck" type="RayCast3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloorCheck"]
+visible = false
+mesh = SubResource("CylinderMesh_l3sln")
+
+[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("player", "character")]
+script = ExtResource("3_l3sln")
+player = NodePath("..")
+character = NodePath("..")
+
+[node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("camera", "character")]
+script = ExtResource("2_l3sln")
+camera = NodePath("CameraPivot/SpringArm3D/Camera3D")
+character = NodePath("..")
+
+[node name="CameraPivot" type="Node3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Camera/CameraPivot"]
+spring_length = 2.465
+
+[node name="Camera3D" type="Camera3D" parent="Camera/CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4972622, 0)
+doppler_tracking = 2
+fov = 90.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rdgsq")
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Debug"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.007372431
+anchor_right = 0.388
+anchor_bottom = 0.18858026
+offset_left = 812.5633
+offset_top = -2.0
+offset_right = 784.4159
+offset_bottom = 88.74074
+text = "Default Text"
+label_settings = SubResource("LabelSettings_l3sln")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.006
+offset_right = 1272.32
+offset_bottom = 720.0
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(426, 240)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="UI-Images" type="Node2D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+
+[node name="Speed" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+texture_filter = 1
+position = Vector2(87, 214)
+texture = ExtResource("5_6usoo")
+
+[node name="BigRing" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+texture_filter = 1
+position = Vector2(370, 40)
+texture = ExtResource("7_1gvlq")
+
+[node name="HpBox" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+texture_filter = 1
+position = Vector2(45, 41)
+texture = ExtResource("7_qv5lp")
+
+[node name="Sonicbox" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+texture_filter = 1
+position = Vector2(45, 41)
+texture = ExtResource("8_18e4a")
+
+[node name="Hp" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+position = Vector2(87, 59)
+texture = ExtResource("11_s3a6p")
+
+[node name="Ring" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+position = Vector2(98, 43)
+texture = ExtResource("12_6hqyq")
+
+[node name="Time" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+position = Vector2(97, 26)
+texture = ExtResource("13_kce15")
+
+[node name="Sonic" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+offset_left = 343.0
+offset_top = 204.0
+offset_right = 367.0
+offset_bottom = 235.0
+focus_mode = 0
+text = "
+"
+icon = ExtResource("14_tiiyr")
+icon_alignment = 1
+script = ExtResource("12_remla")
+
+[node name="Tails" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+offset_left = 369.0
+offset_top = 204.0
+offset_right = 393.0
+offset_bottom = 235.0
+focus_mode = 0
+text = "
+"
+icon = ExtResource("16_am7fw")
+icon_alignment = 1
+script = ExtResource("12_2gyjb")
+
+[node name="Knuckles" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+offset_left = 395.0
+offset_top = 204.0
+offset_right = 419.0
+offset_bottom = 235.0
+focus_mode = 0
+text = "
+"
+icon = ExtResource("18_bm2rt")
+icon_alignment = 1
+script = ExtResource("14_m3t5y")
+
+[connection signal="pressed" from="CanvasLayer/SubViewportContainer/SubViewport/Sonic" to="CanvasLayer/SubViewportContainer/SubViewport/Sonic" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/SubViewportContainer/SubViewport/Tails" to="CanvasLayer/SubViewportContainer/SubViewport/Tails" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/SubViewportContainer/SubViewport/Knuckles" to="CanvasLayer/SubViewportContainer/SubViewport/Knuckles" method="_on_pressed"]

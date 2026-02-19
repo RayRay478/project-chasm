@@ -17,11 +17,23 @@ config/icon="uid://dk5y1mirit6dd"
 
 [autoload]
 
-PlayerMain="*res://scripts/player/player_main.gd"
+Global="*res://scripts/global.gd"
+Conductor="*res://addons/conductor/condcutor.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/snap/snap_2d_transforms_to_pixel=true
 
 [editor]
 
 movie_writer/movie_file="D:/My Files/Game Dev/Indie/Bun N Gun/BunNGun2/momentum_platform_framework/record.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/conductor/plugin.cfg")
 
 [input]
 
@@ -71,4 +83,6 @@ jump={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 textures/canvas_textures/default_texture_repeat=2
+textures/default_filters/use_nearest_mipmap_filter=true

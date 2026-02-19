@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
+class_name PlayerMain
+
 const debug_enabled: bool = true
+
 
 @export_group("Movement")
 @export var move_speed := 20.0
@@ -11,6 +14,7 @@ const debug_enabled: bool = true
 @export var deceleration := 20.0
 @export var rotation_speed := 12.0
 @export var jump_impulse := 12.0
+@export var jump_max := 12.0
 @export var turnspeed_curve: Curve
 @export var _gravity := -30.0
 @export var slope_gravity := 1.2   # the strength of slopes' gravity
@@ -23,10 +27,12 @@ const debug_enabled: bool = true
 @export var uphill_min_speed_ratio := 0.25  # doesn't drop below 25% of move_speed from drag
 
 
-
-
-
-
+# STATES LERS GOO
+var hurt_state: bool = false
+var air_state: bool = false
+var jump_state: bool  = false
+var running_state: bool = false
+var turning_state: bool = false
 
 
 var accel_speed: float = 0.0
@@ -58,7 +64,7 @@ var slope_normal: Vector3 = get_floor_normal()
 	#	slope_normal = new_normal
 	#	slope_mag_dot = slope_normal.dot(_gravity_normal)
 
-
+@export_group("Debug")
 @export var camera: Camera3D
 @export var body: Body
 # @export var body: Node3D 
@@ -81,12 +87,14 @@ func add_debug_info(info:String) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
+	if event.is_action_pressed("ui_accept"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 func _enter_tree():
 	set_multiplayer_authority(int(str(name)))
 
 
 func _ready():
+
 	if camera:
 		camera.current = is_multiplayer_authority()
 
@@ -197,7 +205,7 @@ func _physics_process(delta: float) -> void:
 			var t := clampf(speed / move_speed, 0.0, 1.0)
 
 			var curve_val := acceleration_curve.sample(t)
-			var min_curve := 0.20 # tune: 0.10–0.35
+			var min_curve := 0.25 # tune: 0.10–0.35
 			var accel_step := acceleration * maxf(curve_val, min_curve) * delta
 
 			#swapped from move_speed to target_speed for uphill math
@@ -207,21 +215,27 @@ func _physics_process(delta: float) -> void:
 		else:
 			# turning code (old for safekeeping. doing some fuckshit magic rn - h)
 			# velocity = velocity.slide(up_direction).move_toward(direction * move_speed, 1)
-			var turn_step := acceleration * 0.5 * delta  # tune this
+			var turn_step := acceleration * 2 * delta  # tune this
 			velocity = velocity.slide(up_direction).move_toward(direction * target_speed, turn_step)
 			rotation_speed = 7
-			add_debug_info("IM TURNING YOOOOO!!!")
+			add_debug_info("IM TURNING YOOOOO!!!") # hyper got rid of "nigga", we should hang him - ray
 
 
 	else:
 		velocity = velocity.slerp(Vector3.ZERO,delta * deceleration)+previous_velocity*up_direction
 		add_debug_info("damn fucker, MOVE")
-
 	velocity.y = y_velocity + _gravity * delta
 
-	var is_starting_jump := Input.is_action_just_pressed("jump") and is_on_floor()
+	var is_starting_jump := Input.is_action_pressed("jump") and is_on_floor()
 	if is_starting_jump:
-		velocity += up_direction * jump_impulse
+		velocity += up_direction * jump_max
+		jump_state = true
+	if jump_state and not Input.is_action_pressed("jump"):
+		if velocity.y > jump_impulse:
+			velocity.y *= 0.6
+		jump_state = false
+	
+
 
 
 	if direction.length() > 0.2:
@@ -323,46 +337,6 @@ func _physics_process(delta: float) -> void:
 	#add_debug_info("Slope direction: " + readable_float(slope_dir_dot))
 	#add_debug_info("Slope angle: " + readable_float(rad_to_deg(slope_angle)))
 	add_debug_info("Grounded?: " + readable_float(is_on_floor()))
-
-
-
-# This doesnt work either ;-;
-
-func apply_steering(input_dir: Vector3, delta: float) -> void:
-	if input_dir == Vector3.ZERO:
-		return
-	
-	var current_velocity = Vector3(velocity.x, 0, velocity.z)
-	var current_speed = current_velocity.length()
-	
-	if current_speed < 10.5:
-		# If too slow, directly apply input
-		move_dir = input_dir.normalized()
-		return
-	
-	var current_dir = current_velocity.normalized()
-	var input_norm = input_dir.normalized()
-	
-	var angle_diff = rad_to_deg(acos(clampf(current_dir.dot(input_norm), -1.0, 1.0)))
-
-	var _speed_ratio = move_speed / max_speed
-# Use a non-linear curve for steer strength: stronger at low speeds, weaker at high speeds
-	var k := 1.5  # steepness factor (higher = quicker dropoff)
-	var _scale := 25.0  # "midpoint" speed (where curve bends)
-
-# Smooth steering falloff
-	var steer_strength = (1.0 / (2.0 + pow(current_speed / _scale, k))) * 15.0
-	
-	# Apply resistance to sharp turns (bigger angle = more speed lost)
-
-	if angle_diff > 35.0:
-		var loss_factor = clampf(angle_diff / 180.0, 0.0, 1.0)
-		var speed_loss = current_speed * loss_factor * 0.08
-		gsp = maxf(gsp - speed_loss, 0.0)
-
-	# Gradually steer move_dir
-	move_dir = current_dir.slerp(input_norm, steer_strength * delta).normalized()
-
-	# Reapply velocity with new direction
-	velocity.x = move_dir.x * gsp
-	velocity.z = move_dir.z * gsp
+	add_debug_info("Character: " + readable_float(Global.characterID))
+	add_debug_info("CharacterRN?: " + str(Global.player_char))
+	add_debug_info("Jumping: " + str(jump_state))
