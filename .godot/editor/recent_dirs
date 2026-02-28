@@ -1,4 +1,5 @@
 res://scripts/player
+res://scene/menus/CharacterSelect
 res://model/CHARACTERS/surivors
 res://model/blendfiles/characters/surviors/Sonic
 res://model/blendfiles/characters

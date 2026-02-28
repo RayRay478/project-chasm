@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://df14nxr7r53fo"
+path="res://.godot/imported/2-01 Time Attack-Competition.mp3-8e8dae1ea89e1feb0e10d41ecc27861e.mp3str"
+
+[deps]
+
+source_file="res://scene/menus/CharacterSelect/sounds/2-01 Time Attack-Competition.mp3"
+dest_files=["res://.godot/imported/2-01 Time Attack-Competition.mp3-8e8dae1ea89e1feb0e10d41ecc27861e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

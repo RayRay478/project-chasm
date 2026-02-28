@@ -5,7 +5,7 @@ var tween: Tween
 
 func _ready():
 
-	Conductor.set_song(load ("res://audio/01 - Title Screen.mp3"), 144)
+	Conductor.set_song(load ("res://audio/01 - Title Screen.mp3"), 144, 4, 35)
 	Conductor.play()
 	
 	

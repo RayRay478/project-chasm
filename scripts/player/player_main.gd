@@ -33,7 +33,9 @@ var air_state: bool = false
 var jump_state: bool  = false
 var running_state: bool = false
 var turning_state: bool = false
-
+var action1_state: bool = false
+var action2_state: bool = false
+var action3_state: bool = false
 
 var accel_speed: float = 0.0
 var last_player_input_dir: Vector3 = Vector3.ZERO
@@ -89,6 +91,8 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if event.is_action_pressed("ui_accept"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
 func _enter_tree():
 	set_multiplayer_authority(int(str(name)))
 
@@ -230,12 +234,30 @@ func _physics_process(delta: float) -> void:
 	if is_starting_jump:
 		velocity += up_direction * jump_max
 		jump_state = true
+
 	if jump_state and not Input.is_action_pressed("jump"):
 		if velocity.y > jump_impulse:
 			velocity.y *= 0.6
 		jump_state = false
-	
 
+
+	var ability1 := Input.is_action_pressed("action1")
+	var ability2 := Input.is_action_just_pressed("action2")
+	var ability3 := Input.is_action_just_pressed("action3")
+	
+	if ability1:
+		action1_state = true
+
+	if action1_state and not Input.is_action_pressed("action1"):
+		action1_state = false
+
+
+	if ability2:
+		action2_state = true
+	if ability3:
+		action3_state = true
+	else:
+		action3_state = false
 
 
 	if direction.length() > 0.2:
@@ -244,6 +266,7 @@ func _physics_process(delta: float) -> void:
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	body.global_rotation.y = lerp_angle(body.rotation.y, target_angle, rotation_speed * delta)
 	
+#region Old Slop
 	# HYPER THIS IS OLD SLOPE CODE TAKEN FROM ANOTHER ENGINE
 
 	#var slope_angle:float = acos(slope_mag_dot)
@@ -258,12 +281,13 @@ func _physics_process(delta: float) -> void:
 		#downhill_factor = 100
 
 		#if slope_dir_dot < 0: # Downhill
+
 		#	add_debug_info("RUNNING DOWNHILL")
 		#	gsp += slope_angle * downhill_factor * delta
 		#elif slope_dir_dot > 0: # Uphill
 		#	add_debug_info("RUNNING UP THAT HILL") (#kudos if you pick up the ref :trol:- r) (i hate it. - h)
 		#	gsp -= slope_angle * uphill_factor * delta
-
+#endregion
 # =========================================================================
 	move_and_slide() 
 	# HYPER'S INSANE PHYSICS BULLSHIT HERE WE GO
@@ -331,12 +355,14 @@ func _physics_process(delta: float) -> void:
 	add_debug_info("Driection: " + readable_vector(direction))
 	add_debug_info("Velocity: " + readable_vector(velocity))
 	add_debug_info("Speed Up?: " + readable_float(accel_speed))
-	
 	add_debug_info("Target Angle: " + readable_float(target_angle))
-	#add_debug_info("Ground Angle " + readable_float(rad_to_deg(acos(slope_mag_dot))))
-	#add_debug_info("Slope direction: " + readable_float(slope_dir_dot))
-	#add_debug_info("Slope angle: " + readable_float(rad_to_deg(slope_angle)))
 	add_debug_info("Grounded?: " + readable_float(is_on_floor()))
 	add_debug_info("Character: " + readable_float(Global.characterID))
 	add_debug_info("CharacterRN?: " + str(Global.player_char))
 	add_debug_info("Jumping: " + str(jump_state))
+	add_debug_info("Action1: " + str(action1_state))
+	add_debug_info("Action2: " + str(action2_state))
+	add_debug_info("Action3: " + str(action3_state))
+	#add_debug_info("Ground Angle " + readable_float(rad_to_deg(acos(slope_mag_dot))))
+	#add_debug_info("Slope direction: " + readable_float(slope_dir_dot))
+	#add_debug_info("Slope angle: " + readable_float(rad_to_deg(slope_angle)))

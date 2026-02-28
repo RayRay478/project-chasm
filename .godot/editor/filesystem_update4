@@ -1,13 +1,7 @@
-res://model/CHARACTERS/surivors/knuckles.tscn
+res://scene/menus/CharacterSelect/character-select.tscn
 res://scene/menus/TitleScreen/ScrollShader.gdshader
-res://entity/Character.tscn
-res://scripts/global.gd
-res://scripts/player/player_animation.gd
-res://scripts/character-scripts/tails.gd
 res://scripts/player/player_main.gd
-res://scripts/player/player_states.gd
-res://scripts/character-scripts/buttons/tails_button.gd
-res://scene/menus/TitleScreen/Title Screen.tscn
-res://scene/menus/TitleScreen/testboy.gd
 res://model/CHARACTERS/surivors/sonic.tscn
-res://scene/levels/test levels/sa2level.tscn
+res://scripts/player/player_animation.gd
+res://entity/Character.tscn
+res://scripts/character-scripts/sonic.gd

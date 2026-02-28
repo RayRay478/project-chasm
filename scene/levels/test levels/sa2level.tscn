@@ -867,59 +867,6 @@ environment = SubResource("Environment_md5wc")
 _spawnable_scenes = PackedStringArray("uid://bi1nyeb4xqty3")
 spawn_path = NodePath("..")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = -1
-anchor_right = 0.006
-offset_right = 1272.32
-offset_bottom = 720.0
-stretch = true
-stretch_shrink = 3
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-snap_2d_transforms_to_pixel = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(426, 240)
-size_2d_override_stretch = true
-render_target_update_mode = 4
-
-[node name="Sonic" type="Button" parent="SubViewportContainer/SubViewport"]
-offset_left = 343.0
-offset_top = 204.0
-offset_right = 367.0
-offset_bottom = 235.0
-focus_mode = 0
-text = "
-"
-icon = ExtResource("19_2jssm")
-icon_alignment = 1
-script = ExtResource("20_2ba7h")
-
-[node name="Tails" type="Button" parent="SubViewportContainer/SubViewport"]
-offset_left = 369.0
-offset_top = 204.0
-offset_right = 393.0
-offset_bottom = 235.0
-focus_mode = 0
-text = "
-"
-icon = ExtResource("21_w0knb")
-icon_alignment = 1
-script = ExtResource("22_l336x")
-
-[node name="Knuckles" type="Button" parent="SubViewportContainer/SubViewport"]
-offset_left = 395.0
-offset_top = 204.0
-offset_right = 419.0
-offset_bottom = 235.0
-focus_mode = 0
-text = "
-"
-icon = ExtResource("23_uq8kj")
-icon_alignment = 1
-script = ExtResource("24_1lqwh")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Host" type="Button" parent="CanvasLayer"]
@@ -951,8 +898,61 @@ transform = Transform3D(331.32187, 0, 0, 0, 331.32187, 0, 0, 0, 331.32187, 0, 0,
 material_override = SubResource("StandardMaterial3D_fekg7")
 mesh = SubResource("CapsuleMesh_5rw50")
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = -1
+anchor_right = 0.006
+offset_right = 1272.32
+offset_bottom = 720.0
+focus_mode = 0
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(426, 240)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Sonic" type="Button" parent="SubViewportContainer/SubViewport"]
+offset_left = 342.33334
+offset_top = 204.00002
+offset_right = 366.33334
+offset_bottom = 235.00002
+focus_mode = 0
+text = "
+"
+icon = ExtResource("19_2jssm")
+icon_alignment = 1
+script = ExtResource("20_2ba7h")
+
+[node name="Tails" type="Button" parent="SubViewportContainer/SubViewport"]
+offset_left = 369.0
+offset_top = 204.0
+offset_right = 393.0
+offset_bottom = 235.0
+focus_mode = 0
+text = "
+"
+icon = ExtResource("21_w0knb")
+icon_alignment = 1
+script = ExtResource("22_l336x")
+
+[node name="Knuckles" type="Button" parent="SubViewportContainer/SubViewport"]
+offset_left = 395.0
+offset_top = 204.0
+offset_right = 419.0
+offset_bottom = 235.0
+focus_mode = 0
+text = "
+"
+icon = ExtResource("23_uq8kj")
+icon_alignment = 1
+script = ExtResource("24_1lqwh")
+
+[connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/Sonic" to="SubViewportContainer/SubViewport/Sonic" method="_on_pressed"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/Tails" to="SubViewportContainer/SubViewport/Tails" method="_on_pressed"]
 [connection signal="pressed" from="SubViewportContainer/SubViewport/Knuckles" to="SubViewportContainer/SubViewport/Knuckles" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="CanvasLayer/Join" to="." method="_on_join_pressed"]

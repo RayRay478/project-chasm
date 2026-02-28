@@ -1,0 +1,172 @@
+[gd_scene load_steps=20 format=3 uid="uid://b10doalhshgxl"]
+
+[ext_resource type="Script" uid="uid://bbuwpy0arpos2" path="res://scene/menus/CharacterSelect/character_select.gd" id="1_bfea5"]
+[ext_resource type="Texture2D" uid="uid://bf43812nj33ap" path="res://ui/UI/HP CHARACTERS/sonic1.png" id="1_gqb8h"]
+[ext_resource type="ButtonGroup" uid="uid://dqme8cqhoe7mv" path="res://scene/menus/CharacterSelect/buttons-character-select.tres" id="2_138as"]
+[ext_resource type="Texture2D" uid="uid://b23saonqqfllq" path="res://ui/UI/HP CHARACTERS/tails1.png" id="3_bfea5"]
+[ext_resource type="Texture2D" uid="uid://bim4fk3y86ify" path="res://ui/UI/HP CHARACTERS/knuckles1.png" id="5_k73nc"]
+[ext_resource type="AudioStream" uid="uid://cn2ef4gfh0xt0" path="res://scene/menus/CharacterSelect/sounds/Sonic.wav" id="6_ohctp"]
+[ext_resource type="Texture2D" uid="uid://ca8eqrcpdna1u" path="res://ui/UI/HP CHARACTERS/knuckles3.png" id="7_a4wgc"]
+[ext_resource type="Texture2D" uid="uid://b0rm6ekhkoloy" path="res://ui/UI/HP CHARACTERS/sonic3.png" id="7_bfea5"]
+[ext_resource type="Texture2D" uid="uid://bsq6uhw8qwhcu" path="res://ui/UI/HP CHARACTERS/tails3.png" id="8_138as"]
+[ext_resource type="Script" uid="uid://b6ubeoe35ttdw" path="res://scene/menus/CharacterSelect/buttons.gd" id="8_k73nc"]
+[ext_resource type="AudioStream" uid="uid://cymuwon2q0c7h" path="res://scene/menus/CharacterSelect/sounds/Tails.wav" id="9_1qjjv"]
+[ext_resource type="AudioStream" uid="uid://b0wqsexfjnn5i" path="res://scene/menus/CharacterSelect/sounds/Knuckles.wav" id="12_japbp"]
+[ext_resource type="Shader" uid="uid://c6gcda2i85vuw" path="res://scene/menus/TitleScreen/ScrollShader.gdshader" id="13_japbp"]
+[ext_resource type="Texture2D" uid="uid://bgc3gwgclts1v" path="res://textures/menus/1.png" id="14_eirvn"]
+[ext_resource type="Texture2D" uid="uid://bwipu3gs0qvl8" path="res://textures/menus/Sprite-0002.png" id="14_q17ql"]
+[ext_resource type="AudioStream" uid="uid://df14nxr7r53fo" path="res://scene/menus/CharacterSelect/sounds/2-01 Time Attack-Competition.mp3" id="15_eirvn"]
+[ext_resource type="AudioStream" uid="uid://bcn17187iqyu4" path="res://scene/menus/CharacterSelect/sounds/MenuAccept.wav" id="16_5pmnj"]
+[ext_resource type="AudioStream" uid="uid://dgsjpcbdyxds4" path="res://scene/menus/CharacterSelect/sounds/MenuBleep.wav" id="17_q17ql"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_181s8"]
+shader = ExtResource("13_japbp")
+
+[node name="CharacterSelect" type="Node2D"]
+scale = Vector2(0.78342396, 0.78342396)
+script = ExtResource("1_bfea5")
+button_group = ExtResource("2_138as")
+
+[node name="Sonic" type="TextureButton" parent="." node_paths=PackedStringArray("sound", "selector")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 109.77461
+offset_top = 284.64795
+offset_right = 459.7746
+offset_bottom = 634.6479
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+button_group = ExtResource("2_138as")
+texture_normal = ExtResource("7_bfea5")
+texture_pressed = ExtResource("1_gqb8h")
+stretch_mode = 5
+script = ExtResource("8_k73nc")
+sound = NodePath("Sonic")
+selector = NodePath("..")
+
+[node name="Sonic" type="AudioStreamPlayer" parent="Sonic"]
+stream = ExtResource("6_ohctp")
+
+[node name="Tails" type="TextureButton" parent="." node_paths=PackedStringArray("sound", "selector")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 635.6711
+offset_top = 284.64798
+offset_right = 985.6711
+offset_bottom = 634.6478
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+button_group = ExtResource("2_138as")
+texture_normal = ExtResource("8_138as")
+texture_pressed = ExtResource("3_bfea5")
+stretch_mode = 5
+script = ExtResource("8_k73nc")
+sound = NodePath("Tails")
+selector = NodePath("..")
+
+[node name="Tails" type="AudioStreamPlayer" parent="Tails"]
+stream = ExtResource("9_1qjjv")
+
+[node name="Knuckles" type="TextureButton" parent="." node_paths=PackedStringArray("sound", "selector")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1176.885
+offset_top = 284.64795
+offset_right = 1526.885
+offset_bottom = 634.6479
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+button_group = ExtResource("2_138as")
+texture_normal = ExtResource("7_a4wgc")
+texture_pressed = ExtResource("5_k73nc")
+stretch_mode = 5
+script = ExtResource("8_k73nc")
+sound = NodePath("Knuckles")
+selector = NodePath("..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Knuckles" type="AudioStreamPlayer" parent="Knuckles"]
+stream = ExtResource("12_japbp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -44
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.006
+offset_right = 1272.32
+offset_bottom = 720.0
+focus_mode = 0
+focus_behavior_recursive = 1
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+stretch = true
+stretch_shrink = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(426, 240)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_181s8")
+instance_shader_parameters/speed_x = 0.02
+instance_shader_parameters/speed_y = 0.0
+offset_right = 546.0
+offset_bottom = 224.0
+texture = ExtResource("14_q17ql")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_181s8")
+instance_shader_parameters/speed_y = 0.0
+offset_top = 216.0
+offset_right = 426.0
+offset_bottom = 256.0
+texture = ExtResource("14_eirvn")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_181s8")
+instance_shader_parameters/speed_x = 0.1
+instance_shader_parameters/speed_y = 0.0
+offset_top = -16.0
+offset_right = 426.0
+offset_bottom = 24.0
+texture = ExtResource("14_eirvn")
+stretch_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="201TimeAttackCompetition" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_eirvn")
+volume_db = -14.945
+autoplay = true
+
+[node name="MenuAccept" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_5pmnj")
+
+[node name="MenuBleep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_q17ql")
+
+[connection signal="pressed" from="Sonic" to="Sonic" method="_on_pressed"]
+[connection signal="pressed" from="Tails" to="Tails" method="_on_pressed"]
+[connection signal="pressed" from="Knuckles" to="Knuckles" method="_on_pressed"]

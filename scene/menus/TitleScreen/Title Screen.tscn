@@ -10,7 +10,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0j7cq"]
 shader = ExtResource("1_d0p0f")
-shader_parameter/speed = 0.13
 
 [sub_resource type="Animation" id="Animation_c60ls"]
 resource_name = "RESET"
@@ -74,6 +73,7 @@ render_target_update_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
 material = SubResource("ShaderMaterial_0j7cq")
+instance_shader_parameters/speed_y = 0.0
 offset_top = 216.0
 offset_right = 426.0
 offset_bottom = 256.0
@@ -82,6 +82,7 @@ stretch_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
 material = SubResource("ShaderMaterial_0j7cq")
+instance_shader_parameters/speed_y = 0.0
 offset_top = -16.0
 offset_right = 426.0
 offset_bottom = 24.0
