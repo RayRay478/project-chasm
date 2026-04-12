@@ -2,7 +2,7 @@ extends Node
 
 @onready var multiplayer_ui = $CanvasLayer
 
-const PLAYER = preload("res://entity/Character.tscn")
+const PLAYER = preload("res://entity/characternew.tscn")
 
 var peer = ENetMultiplayerPeer.new()
 
@@ -10,7 +10,6 @@ func _on_host_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	peer.create_server(2515)
 	multiplayer.multiplayer_peer = peer
-	
 	multiplayer.peer_connected.connect(
 		func(pid):
 			print("frinend " + str(pid) + " has joined the game!")

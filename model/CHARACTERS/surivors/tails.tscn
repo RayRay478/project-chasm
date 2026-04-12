@@ -1,20 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://tygon1x8wwrb"]
+[gd_scene load_steps=37 format=3 uid="uid://tygon1x8wwrb"]
 
+[ext_resource type="Script" uid="uid://84iwdwtcr80p" path="res://scripts/character-scripts/tails.gd" id="1_noq1t"]
 [ext_resource type="PackedScene" uid="uid://dsv7jbyq6aklf" path="res://model/blendfiles/characters/surviors/Tails/Tails.blend" id="1_xottv"]
 [ext_resource type="Texture2D" uid="uid://b1fydb25ahind" path="res://model/blendfiles/characters/surviors/Tails/textures/TailsBaseFinal.png" id="2_8rg43"]
-[ext_resource type="Script" uid="uid://dgrfxo1v4x1bv" path="res://scripts/player/constantkeyframes.gd" id="3_ays4q"]
+[ext_resource type="Script" uid="uid://ckxe5e1l1t3e1" path="res://scripts/player/player_camera.gd" id="2_hfd10"]
+[ext_resource type="Script" uid="uid://d0h272txvm23i" path="res://scripts/player/player_health.gd" id="2_qyvae"]
+[ext_resource type="Script" uid="uid://ce02r8141wq6t" path="res://scripts/player/player_animation.gd" id="4_n0rnj"]
+[ext_resource type="Script" uid="uid://cthdl56misqpf" path="res://scripts/player/player_debug.gd" id="7_yi3wf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8rg43"]
-albedo_texture = ExtResource("2_8rg43")
+[sub_resource type="Curve" id="Curve_noq1t"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.094117664, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ays4q"]
-albedo_texture = ExtResource("2_8rg43")
+[sub_resource type="Curve" id="Curve_hfd10"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyvae"]
-albedo_texture = ExtResource("2_8rg43")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ij2q"]
-albedo_texture = ExtResource("2_8rg43")
+[sub_resource type="SphereShape3D" id="SphereShape3D_wwx8h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tn8tb"]
 albedo_texture = ExtResource("2_8rg43")
@@ -22,9 +24,177 @@ albedo_texture = ExtResource("2_8rg43")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noq1t"]
 albedo_texture = ExtResource("2_8rg43")
 
-[node name="Tails" instance=ExtResource("1_xottv")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfd10"]
+albedo_texture = ExtResource("2_8rg43")
 
-[node name="Skeleton3D" parent="char_grp/rig" index="0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx42b"]
+albedo_texture = ExtResource("2_8rg43")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0rnj"]
+albedo_texture = ExtResource("2_8rg43")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amogl"]
+albedo_texture = ExtResource("2_8rg43")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hr37q"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7r7vs"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vqtn8"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjdi7"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jn5ed"]
+animation = &"Idle"
+
+[sub_resource type="Curve" id="Curve_yx42b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_bjdi7"]
+xfade_time = 0.01
+xfade_curve = SubResource("Curve_yx42b")
+input_0/name = "Air"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Movement"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "States"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n0rnj"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_amogl"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yi3wf"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_rygd6"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_n0rnj")
+blend_point_0/pos = 0.7
+blend_point_1/node = SubResource("AnimationNodeAnimation_amogl")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_yi3wf")
+blend_point_2/pos = 0.0
+
+[sub_resource type="Curve" id="Curve_0owa5"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2lc82"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_7r7vs"]
+fadein_curve = SubResource("Curve_0owa5")
+fadeout_curve = SubResource("Curve_2lc82")
+autorestart_delay = 2.4
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5v8oa"]
+animation = &"Idle"
+
+[sub_resource type="Curve" id="Curve_l1ser"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_xengo"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_l1ser")
+input_0/name = "Jump"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Action1"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "Action2"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "Action3"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+input_4/name = "Hurt"
+input_4/auto_advance = false
+input_4/break_loop_at_end = false
+input_4/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_7r7vs"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qlqur"]
+graph_offset = Vector2(-1157.843, -187.59198)
+nodes/output/position = Vector2(-200, -200)
+nodes/AnimAir/node = SubResource("AnimationNodeAnimation_7r7vs")
+nodes/AnimAir/position = Vector2(-880, 200)
+nodes/Running/node = SubResource("AnimationNodeAnimation_5v8oa")
+nodes/Running/position = Vector2(-1660, 200)
+nodes/Main/node = SubResource("AnimationNodeTransition_bjdi7")
+nodes/Main/position = Vector2(-660, -200)
+nodes/AnimWalk/node = SubResource("AnimationNodeAnimation_vqtn8")
+nodes/AnimWalk/position = Vector2(-1540, -20)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_bjdi7")
+nodes/Idle/position = Vector2(-1560, -240)
+nodes/Move/node = SubResource("AnimationNodeBlendSpace1D_rygd6")
+nodes/Move/position = Vector2(-1040, -160)
+nodes/Jump/node = SubResource("AnimationNodeAnimation_jn5ed")
+nodes/Jump/position = Vector2(-1440, 320)
+nodes/States/node = SubResource("AnimationNodeTransition_xengo")
+nodes/States/position = Vector2(-1040, 40)
+nodes/Action1/node = SubResource("AnimationNodeAnimation_hr37q")
+nodes/Action1/position = Vector2(-660, 40)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_7r7vs")
+nodes/OneShot/position = Vector2(-440, -200)
+nodes/Transition/node = SubResource("AnimationNodeTransition_7r7vs")
+nodes/Transition/position = Vector2(-820, 420)
+node_connections = [&"output", 0, &"OneShot", &"Main", 0, &"AnimAir", &"Main", 1, &"Move", &"Main", 2, &"States", &"States", 0, &"Jump", &"OneShot", 0, &"Main", &"OneShot", 1, &"Action1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1l06a"]
+line_spacing = 0.0
+font_size = 21
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0.5597201, 0.5597201, 0.5597201, 0.58431375)
+shadow_offset = Vector2(0, 0)
+
+[node name="Tails" type="Node3D"]
+
+[node name="PlayerMain" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera", "body", "groundchecker")]
+script = ExtResource("1_noq1t")
+acceleration = 70.0
+acceleration_curve = SubResource("Curve_noq1t")
+jump_impulse = 2.0
+jump_max = 40.0
+turnspeed_curve = SubResource("Curve_hfd10")
+camera = NodePath("Camera/CameraPivot/SpringArm3D/Camera3D")
+body = NodePath("Body")
+groundchecker = NodePath("RayCast3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerMain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_wwx8h")
+
+[node name="Body" parent="PlayerMain" node_paths=PackedStringArray("player", "character", "animation_player", "anim_tree") instance=ExtResource("1_xottv")]
+script = ExtResource("4_n0rnj")
+player = NodePath("..")
+character = NodePath("..")
+animation_player = NodePath("AnimationPlayer")
+anim_tree = NodePath("AnimationTree")
+
+[node name="Skeleton3D" parent="PlayerMain/Body/char_grp/rig" index="0"]
 bones/2/rotation = Quaternion(-3.3484866e-08, 0.6427877, 0.7660444, -2.8097135e-08)
 bones/3/rotation = Quaternion(1, -2.88658e-14, 3.413358e-06, -9.85293e-20)
 bones/5/rotation = Quaternion(1, -2.7533534e-14, 3.4133582e-06, -9.3981806e-20)
@@ -56,9 +226,9 @@ bones/54/rotation = Quaternion(-0.05271403, 0.10393938, -0.017931415, 0.9930238)
 bones/54/scale = Vector3(0.2848524, 12.324248, 0.28485233)
 bones/55/rotation = Quaternion(0.010973881, -0.012243076, -0.0028964456, 0.9998607)
 bones/56/rotation = Quaternion(0.09444981, -8.9031476e-09, -0.059384618, 0.9937569)
-bones/62/rotation = Quaternion(0.776438, 0.17580175, 0.035011783, -0.6041623)
-bones/63/rotation = Quaternion(0.5790475, 0.0061013633, -0.1615141, 0.799112)
-bones/64/rotation = Quaternion(0.43891153, -0.075562164, 0.07889923, 0.89186436)
+bones/62/rotation = Quaternion(0.74824023, 0.14269255, -0.0076101236, -0.6478561)
+bones/63/rotation = Quaternion(0.42508313, 0.03519235, -0.1577515, 0.8906067)
+bones/64/rotation = Quaternion(0.43891153, -0.07556216, 0.07889919, 0.89186436)
 bones/65/rotation = Quaternion(0.7974966, -0.08104758, -0.041227635, -0.5964316)
 bones/66/rotation = Quaternion(0.4898542, -0.090969846, 0.049714416, 0.8656188)
 bones/67/rotation = Quaternion(0.46952134, -0.032284033, -0.030573322, 0.88180083)
@@ -155,23 +325,86 @@ bones/213/rotation = Quaternion(-6.5800743e-09, 0.9961947, -0.087155715, 7.52106
 bones/215/position = Vector3(0.21588714, 0.6897419, -0.016643668)
 bones/215/rotation = Quaternion(6.580075e-09, 0.9961947, -0.087155715, -7.52106e-08)
 
-[node name="ArmsLegs" parent="char_grp/rig/Skeleton3D" index="0"]
-material_override = SubResource("StandardMaterial3D_8rg43")
-
-[node name="Body" parent="char_grp/rig/Skeleton3D" index="1"]
-material_override = SubResource("StandardMaterial3D_ays4q")
-
-[node name="Cannon" parent="char_grp/rig/Skeleton3D" index="2"]
-material_override = SubResource("StandardMaterial3D_qyvae")
-
-[node name="Head" parent="char_grp/rig/Skeleton3D" index="3"]
-material_override = SubResource("StandardMaterial3D_7ij2q")
-
-[node name="Tails" parent="char_grp/rig/Skeleton3D" index="4"]
+[node name="ArmsLegs" parent="PlayerMain/Body/char_grp/rig/Skeleton3D" index="0"]
 material_override = SubResource("StandardMaterial3D_tn8tb")
 
-[node name="Tufts" parent="char_grp/rig/Skeleton3D" index="5"]
+[node name="Body" parent="PlayerMain/Body/char_grp/rig/Skeleton3D" index="1"]
 material_override = SubResource("StandardMaterial3D_noq1t")
 
-[node name="AnimationPlayer" parent="." index="2"]
-script = ExtResource("3_ays4q")
+[node name="Cannon" parent="PlayerMain/Body/char_grp/rig/Skeleton3D" index="2"]
+material_override = SubResource("StandardMaterial3D_hfd10")
+
+[node name="Head" parent="PlayerMain/Body/char_grp/rig/Skeleton3D" index="3"]
+material_override = SubResource("StandardMaterial3D_yx42b")
+
+[node name="Tails" parent="PlayerMain/Body/char_grp/rig/Skeleton3D" index="4"]
+material_override = SubResource("StandardMaterial3D_n0rnj")
+
+[node name="Tufts" parent="PlayerMain/Body/char_grp/rig/Skeleton3D" index="5"]
+material_override = SubResource("StandardMaterial3D_amogl")
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerMain/Body"]
+tree_root = SubResource("AnimationNodeBlendTree_qlqur")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Main/current_state = "Air"
+parameters/Main/transition_request = ""
+parameters/Main/current_index = 0
+parameters/Move/blend_position = 0.69969356
+parameters/States/current_state = "Jump"
+parameters/States/transition_request = ""
+parameters/States/current_index = 0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+parameters/Transition/current_state = ""
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = -1
+
+[node name="Camera" type="Node3D" parent="PlayerMain" node_paths=PackedStringArray("camera", "character")]
+script = ExtResource("2_hfd10")
+camera = NodePath("CameraPivot/SpringArm3D/Camera3D")
+tilt_limit = 0.75
+character = NodePath("..")
+
+[node name="CameraPivot" type="Node3D" parent="PlayerMain/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerMain/Camera/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3541114, 0)
+collision_mask = 2
+spring_length = 4.265
+
+[node name="Camera3D" type="Camera3D" parent="PlayerMain/Camera/CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4972622, 0)
+doppler_tracking = 2
+fov = 90.0
+
+[node name="Health" type="Node3D" parent="PlayerMain"]
+script = ExtResource("2_qyvae")
+max_health = 100.0
+
+[node name="Debug" type="Node3D" parent="PlayerMain" node_paths=PackedStringArray("debug_label", "player", "health")]
+script = ExtResource("7_yi3wf")
+debug_label = NodePath("Label")
+player = NodePath("..")
+health = NodePath("../Health")
+
+[node name="Label" type="Label" parent="PlayerMain/Debug"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.007372427
+anchor_right = 0.35201883
+anchor_bottom = 0.19619343
+offset_left = 852.5633
+offset_top = -2.0
+offset_right = 824.4159
+offset_bottom = 88.74074
+text = "Default Text"
+label_settings = SubResource("LabelSettings_1l06a")
+metadata/_edit_use_anchors_ = true
+
+[node name="RayCast3D" type="RayCast3D" parent="PlayerMain"]
+enabled = false
+target_position = Vector3(0, -0.16, 0)
+
+[editable path="PlayerMain/Body"]

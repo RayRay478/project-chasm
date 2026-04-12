@@ -1,7 +1,6 @@
-res://scene/menus/CharacterSelect/character-select.tscn
-res://scene/menus/TitleScreen/ScrollShader.gdshader
-res://scripts/player/player_main.gd
 res://model/CHARACTERS/surivors/sonic.tscn
-res://scripts/player/player_animation.gd
-res://entity/Character.tscn
-res://scripts/character-scripts/sonic.gd
+res://scene/menus/TitleScreen/ScrollShader.gdshader
+res://scripts/player/player_setup.gd
+res://entity/characternew.tscn
+res://scripts/character-scripts/tails.gd
+res://model/CHARACTERS/surivors/tails.tscn

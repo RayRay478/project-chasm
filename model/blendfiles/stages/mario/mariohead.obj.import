@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bvup8vwvqs5yv"
+path="res://.godot/imported/mariohead.obj-44f100bcb99a9d9c8164eae241e2568f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mariohead.obj-44f100bcb99a9d9c8164eae241e2568f.mesh"]
+
+source_file="res://model/blendfiles/stages/mario/mariohead.obj"
+dest_files=["res://.godot/imported/mariohead.obj-44f100bcb99a9d9c8164eae241e2568f.mesh", "res://.godot/imported/mariohead.obj-44f100bcb99a9d9c8164eae241e2568f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

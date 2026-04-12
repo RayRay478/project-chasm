@@ -1,9 +1,14 @@
+res://scripts/character-scripts
 res://scripts/player
-res://scene/menus/CharacterSelect
-res://model/CHARACTERS/surivors
 res://model/blendfiles/characters/surviors/Sonic
+res://entity/componets
+res://model/CHARACTERS/surivors
+res://entity
+res://scene/levels/test levels
+res://
+res://textures/menus
+res://scene/menus/CharacterSelect
 res://model/blendfiles/characters
 res://scene/menus/TitleScreen
 res://scripts
 D:/Documents/project-chasm
-res://scripts/character-scripts

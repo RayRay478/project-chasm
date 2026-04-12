@@ -1,9 +1,8 @@
+@icon("res://textures/icons/codingspecialstuff/main.png")
+
 extends CharacterBody3D
 
 class_name PlayerMain
-
-const debug_enabled: bool = true
-
 
 @export_group("Movement")
 @export var move_speed := 20.0
@@ -69,22 +68,14 @@ var slope_normal: Vector3 = get_floor_normal()
 @export_group("Debug")
 @export var camera: Camera3D
 @export var body: Body
+
 # @export var body: Node3D 
 # (Body instead of Node3D might help avoid errors for things like body.animate() - h)
-@export var debug_label: Label
-
 
 # ^^ DEBUG STUFF ^^ - (added var camera here just for better organization - h)
 
-func readable_vector(input:Vector3) -> String:
-	return str(input.snappedf(0.01))
-
-func readable_float(input:float) -> String:
-	return str(snappedf(input, 0.01))
-
-func add_debug_info(info:String) -> void:
-	if debug_enabled:
-		debug_label.text += info + "\n"
+@export_group("Collisions")
+@export var groundchecker: RayCast3D
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -94,7 +85,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _enter_tree():
-	set_multiplayer_authority(int(str(name)))
+	set_multiplayer_authority(str(name).to_int())
 
 
 func _ready():
@@ -111,17 +102,17 @@ func _physics_process(delta: float) -> void:
 	#	return
 	
 	
-	if camera == null or body == null or debug_label == null:
+	if camera == null or body == null:
 		print("Missing refs:",
 			" camera=", camera,
 			" body=", body,
-			" debug_label=", debug_label)
+			)
 		return
 
 	# rest of movement...
 
 
-	debug_label.text = ""
+
 	camera_input_direction = Vector2.ZERO
 
 	
@@ -134,13 +125,9 @@ func _physics_process(delta: float) -> void:
 	
 	
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var input_3: Vector3 = Vector3(
-		input_dir.x,
-		0.0, 
-		input_dir.y
-		)
+
 	
-	var direction = ((calcForward.rotated(up_direction,deg_to_rad(90))*-input_dir.x)+(calcForward*-input_dir.y)).normalized()
+	var direction := ((calcForward.rotated(up_direction,deg_to_rad(90))*-input_dir.x)+(calcForward*-input_dir.y)).normalized()
 
 	direction.y = 0.0
 	direction = direction.normalized()
@@ -148,7 +135,7 @@ func _physics_process(delta: float) -> void:
 	var y_velocity := velocity.y
 	velocity.y = 0.0
 	
-	var previous_velocity = velocity.dot(up_direction)
+	var previous_velocity := velocity.dot(up_direction)
 	# accel_speed = velocity.length() / move_speed (old code for safekeeping - h)
 	var horiz_speed := velocity.slide(up_direction).length()
 	accel_speed = clampf(horiz_speed / move_speed, 0.0, 1.0)
@@ -214,7 +201,7 @@ func _physics_process(delta: float) -> void:
 
 			#swapped from move_speed to target_speed for uphill math
 			velocity = horiz.move_toward(direction * target_speed, accel_step)
-			add_debug_info("FUCK IM NOT TURNING")
+			#add_debug_info("FUCK IM NOT TURNING")
 
 		else:
 			# turning code (old for safekeeping. doing some fuckshit magic rn - h)
@@ -222,43 +209,51 @@ func _physics_process(delta: float) -> void:
 			var turn_step := acceleration * 2 * delta  # tune this
 			velocity = velocity.slide(up_direction).move_toward(direction * target_speed, turn_step)
 			rotation_speed = 7
-			add_debug_info("IM TURNING YOOOOO!!!") # hyper got rid of "nigga", we should hang him - ray
+			#add_debug_info("IM TURNING YOOOOO!!!") # hyper got rid of "nigga", we should hang him - ray
 
 
 	else:
 		velocity = velocity.slerp(Vector3.ZERO,delta * deceleration)+previous_velocity*up_direction
-		add_debug_info("damn fucker, MOVE")
+		#add_debug_info("damn fucker, MOVE")
 	velocity.y = y_velocity + _gravity * delta
 
 	var is_starting_jump := Input.is_action_pressed("jump") and is_on_floor()
 	if is_starting_jump:
 		velocity += up_direction * jump_max
+		groundchecker.enabled = false
 		jump_state = true
 
-	if jump_state and not Input.is_action_pressed("jump"):
-		if velocity.y > jump_impulse:
+	if jump_state and Input.is_action_just_released("jump"):
+		if velocity.y > -jump_impulse:
+			groundchecker.enabled = true
 			velocity.y *= 0.6
+
+	if groundchecker.is_colliding():
 		jump_state = false
 
-
-	var ability1 := Input.is_action_pressed("action1")
+	var ability1 := Input.is_action_just_pressed("action1")
 	var ability2 := Input.is_action_just_pressed("action2")
 	var ability3 := Input.is_action_just_pressed("action3")
+
 	
 	if ability1:
 		action1_state = true
-
-	if action1_state and not Input.is_action_pressed("action1"):
+		jump_state = false
+	else:
 		action1_state = false
-
 
 	if ability2:
 		action2_state = true
+		
+		
+	if action2_state and Input.is_action_just_pressed("action2"):
+		action2_state = false
+
 	if ability3:
 		action3_state = true
-	else:
-		action3_state = false
 
+	if action3_state and Input.is_action_just_released("action3"):
+		action3_state = false
 
 	if direction.length() > 0.2:
 		_last_movement_direction = direction
@@ -351,18 +346,7 @@ func _physics_process(delta: float) -> void:
 
 	body.animate(velocity)
 
-	add_debug_info("Input Vector: " + readable_vector(input_3))
-	add_debug_info("Driection: " + readable_vector(direction))
-	add_debug_info("Velocity: " + readable_vector(velocity))
-	add_debug_info("Speed Up?: " + readable_float(accel_speed))
-	add_debug_info("Target Angle: " + readable_float(target_angle))
-	add_debug_info("Grounded?: " + readable_float(is_on_floor()))
-	add_debug_info("Character: " + readable_float(Global.characterID))
-	add_debug_info("CharacterRN?: " + str(Global.player_char))
-	add_debug_info("Jumping: " + str(jump_state))
-	add_debug_info("Action1: " + str(action1_state))
-	add_debug_info("Action2: " + str(action2_state))
-	add_debug_info("Action3: " + str(action3_state))
+
 	#add_debug_info("Ground Angle " + readable_float(rad_to_deg(acos(slope_mag_dot))))
 	#add_debug_info("Slope direction: " + readable_float(slope_dir_dot))
 	#add_debug_info("Slope angle: " + readable_float(rad_to_deg(slope_angle)))

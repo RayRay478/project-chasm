@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bi1nyeb4xqty3"]
+[gd_scene load_steps=20 format=3 uid="uid://bi1nyeb4xqty3"]
 
 [ext_resource type="Script" uid="uid://bghi73ufftdui" path="res://scripts/player/player_main.gd" id="1_l3sln"]
 [ext_resource type="Script" uid="uid://ckxe5e1l1t3e1" path="res://scripts/player/player_camera.gd" id="2_l3sln"]
-[ext_resource type="PackedScene" uid="uid://ciayxgksyj2e0" path="res://model/CHARACTERS/surivors/sonic.tscn" id="3_6hqyq"]
+[ext_resource type="PackedScene" uid="uid://ciayxgksyj2e0" path="res://model/CHARACTERS/surivors/sonicold.tscn" id="3_6hqyq"]
+[ext_resource type="Script" uid="uid://cthdl56misqpf" path="res://scripts/player/player_debug.gd" id="4_jk34n"]
+[ext_resource type="Script" uid="uid://xxitoh0er35u" path="res://scripts/player/player_setup.gd" id="5_2gyjb"]
 [ext_resource type="Texture2D" uid="uid://bynxfy1fjw6l8" path="res://ui/UI/speed.png" id="5_6usoo"]
 [ext_resource type="Texture2D" uid="uid://1p33m6q4ai0j" path="res://ui/UI/big ring.png" id="7_1gvlq"]
 [ext_resource type="Texture2D" uid="uid://dff8jeuonmkop" path="res://ui/UI/HP BOX.png" id="7_qv5lp"]
@@ -11,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://djc5wue6k2ewe" path="res://ui/UI/ring.png" id="12_6hqyq"]
 [ext_resource type="Texture2D" uid="uid://b42fgfa18tter" path="res://ui/UI/TIME.png" id="13_kce15"]
 
-[sub_resource type="Curve" id="Curve_am7fw"]
+[sub_resource type="Curve" id="Curve_a4vol"]
 _data = [Vector2(0, 0), 0.0, 3.41113, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -26,10 +28,6 @@ point_count = 2
 [sub_resource type="CylinderMesh" id="CylinderMesh_l3sln"]
 height = 0.001
 
-[sub_resource type="GDScript" id="GDScript_18e4a"]
-script/source = "extends Body
-"
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rdgsq"]
 properties/0/path = NodePath("Player/Sonic/AnimationPlayer:current_animation")
 properties/0/spawn = true
@@ -43,14 +41,14 @@ properties/2/replication_mode = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_l3sln"]
 line_spacing = 0.0
-font_size = 30
-outline_size = 5
+font_size = 21
+outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 shadow_color = Color(0.5597201, 0.5597201, 0.5597201, 0.58431375)
 shadow_offset = Vector2(0, 0)
 
-[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("camera", "body", "debug_label")]
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("camera", "body")]
 collision_layer = 2
 slide_on_ceiling = false
 floor_constant_speed = true
@@ -58,7 +56,7 @@ floor_block_on_wall = false
 floor_snap_length = 0.5
 script = ExtResource("1_l3sln")
 acceleration = 75.0
-acceleration_curve = SubResource("Curve_am7fw")
+acceleration_curve = SubResource("Curve_a4vol")
 deceleration = 5.0
 rotation_speed = 5.0
 jump_impulse = 10.0
@@ -68,7 +66,6 @@ _gravity = -45.0
 mouse_sensitivity = 0.01
 camera = NodePath("Camera/CameraPivot/SpringArm3D/Camera3D")
 body = NodePath("Character")
-debug_label = NodePath("Debug/Label")
 
 [node name="SpeedLooky" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1575613, -0.0072369576)
@@ -88,10 +85,8 @@ shape = SubResource("SphereShape3D_r1b30")
 visible = false
 mesh = SubResource("CylinderMesh_l3sln")
 
-[node name="Node3D" type="Node3D" parent="."]
-
 [node name="Character" type="Node3D" parent="." node_paths=PackedStringArray("player", "character", "animation_player")]
-script = SubResource("GDScript_18e4a")
+script = ExtResource("5_2gyjb")
 player = NodePath("..")
 character = NodePath("..")
 animation_player = NodePath("Player/AnimationPlayer")
@@ -117,17 +112,21 @@ fov = 90.0
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_rdgsq")
 
-[node name="Debug" type="CanvasLayer" parent="."]
+[node name="Debug" type="Node3D" parent="." node_paths=PackedStringArray("debug_label", "player", "health")]
+script = ExtResource("4_jk34n")
+debug_label = NodePath("Label")
+player = NodePath("..")
+health = NodePath("../Character/Player/Health")
 
 [node name="Label" type="Label" parent="Debug"]
 texture_filter = 1
 anchors_preset = -1
-anchor_left = 0.007372431
-anchor_right = 0.388
-anchor_bottom = 0.18858026
-offset_left = 796.5633
+anchor_left = 0.007372427
+anchor_right = 0.35201883
+anchor_bottom = 0.19619343
+offset_left = 852.5633
 offset_top = -2.0
-offset_right = 768.4159
+offset_right = 824.4159
 offset_bottom = 88.74074
 text = "Default Text"
 label_settings = SubResource("LabelSettings_l3sln")
@@ -140,6 +139,7 @@ anchors_preset = -1
 anchor_right = 0.006
 offset_right = 1272.32
 offset_bottom = 720.0
+focus_behavior_recursive = 2
 stretch = true
 stretch_shrink = 3
 

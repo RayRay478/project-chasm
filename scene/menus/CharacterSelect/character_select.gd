@@ -2,9 +2,9 @@ extends Node2D
 class_name Selector
 @export var button_group : ButtonGroup
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		which_pressed()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_accept"):
+		#which_pressed()
 
 func which_pressed():
 	var button_pressed = button_group.get_pressed_button()

@@ -26,7 +26,7 @@ func _on_pressed() -> void:
 	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.65)
 	sound.play()
 	$"../MenuAccept".play()
-	selector.which_pressed()
+#	selector.which_pressed()
 
 func reset_tween() -> void:
 	if tween:

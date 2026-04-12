@@ -864,7 +864,7 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 0)
 environment = SubResource("Environment_md5wc")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://bi1nyeb4xqty3")
+_spawnable_scenes = PackedStringArray("uid://bmugv2yrb7ruj")
 spawn_path = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
