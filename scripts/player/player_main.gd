@@ -5,17 +5,36 @@ extends CharacterBody3D
 class_name PlayerMain
 
 @export_group("Movement")
+
 @export var move_speed := 20.0
 @export var max_speed := 40.0
 
 @export var acceleration := 20.0
 @export var acceleration_curve: Curve
 @export var deceleration := 20.0
-@export var rotation_speed := 12.0
-@export var jump_impulse := 12.0
-@export var jump_max := 12.0
 @export var turnspeed_curve: Curve
+
+@export var rotation_speed := 12.0
+
+@export_group("Jump")
+
+@export var jump_max := 12.0
+
+@export var jump_height : float
+@export var jump_impulse := 12.0
+
+
+@export var jump_time_to_peak: float
+@export var jump_time_to_fall: float
+
+var jump_velocity: float
+var jump_gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var fall_gravity: float = 0.5
+
 @export var _gravity := -30.0
+
+@export_group("Slopes")
+
 @export var slope_gravity := 1.2   # the strength of slopes' gravity
 @export var ground_friction := 12.0
 @export var max_downhill_accel := 30.0
@@ -89,12 +108,14 @@ func _enter_tree():
 
 
 func _ready():
-
 	if camera:
 		camera.current = is_multiplayer_authority()
+	calculate_movement()
 
-
-# func _unhandled_input(event: InputEvent) -> void:
+func calculate_movement() -> void:
+	jump_gravity = (2*jump_height)/pow(jump_time_to_peak,2)
+	fall_gravity = (2*jump_height)/pow(jump_time_to_fall,2)
+	jump_velocity = jump_gravity * jump_time_to_peak
 
 
 func _physics_process(delta: float) -> void:
@@ -216,17 +237,20 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.slerp(Vector3.ZERO,delta * deceleration)+previous_velocity*up_direction
 		#add_debug_info("damn fucker, MOVE")
 	velocity.y = y_velocity + _gravity * delta
-
+	
+	if not is_on_floor():
+		if velocity.y>0:
+			velocity.y -= jump_gravity * delta
+		else:
+			velocity.y -= fall_gravity * delta
+		groundchecker.enabled = true
+	
 	var is_starting_jump := Input.is_action_pressed("jump") and is_on_floor()
 	if is_starting_jump:
-		velocity += up_direction * jump_max
+		velocity.y = jump_velocity
 		groundchecker.enabled = false
 		jump_state = true
 
-	if jump_state and Input.is_action_just_released("jump"):
-		if velocity.y > -jump_impulse:
-			groundchecker.enabled = true
-			velocity.y *= 0.6
 
 	if groundchecker.is_colliding():
 		jump_state = false

@@ -1,6 +1,6 @@
 extends Button
 
-var character = preload("res://entity/characternew.tscn")
+var character = preload("res://entity/CharacterSpawner.tscn")
 
 func _on_pressed() -> void:
 	var player = character.instantiate()

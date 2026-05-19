@@ -96,6 +96,7 @@ background_mode = 2
 sky = SubResource("Sky_he6ai")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.5
 reflected_light_source = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irqs8"]
@@ -2167,8 +2168,12 @@ environment = SubResource("Environment_vq2qv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.9904783, 0.038032252, -0.13231169, 0.13766931, -0.27362764, 0.95193243, 0, -0.9610836, -0.27625808, 0, 0, 0)
-light_specular = 2.035
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
 light_bake_mode = 1
+directional_shadow_mode = 0
 directional_shadow_split_1 = 0.104
 directional_shadow_split_3 = 0.615
 sky_mode = 1
@@ -2247,7 +2252,6 @@ visible = false
 
 [node name="Mariohead" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(44.999996, 0, 0, 0, 39.096195, -22.281992, 0, 22.281992, 39.096195, -17.090042, 301.82333, -225.80762)
-visible = false
 mesh = ExtResource("77_mtuuf")
 skeleton = NodePath("../..")
 surface_material_override/15 = SubResource("StandardMaterial3D_l07df")

@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmugv2yrb7ruj"]
+
+[ext_resource type="Script" uid="uid://f3mwg46uty81" path="res://scripts/player/player_setup.gd" id="1_pitss"]
+[ext_resource type="Texture2D" uid="uid://bynxfy1fjw6l8" path="res://ui/UI/speed.png" id="2_vvxoi"]
+[ext_resource type="Texture2D" uid="uid://1p33m6q4ai0j" path="res://ui/UI/big ring.png" id="3_gktwp"]
+[ext_resource type="Texture2D" uid="uid://dff8jeuonmkop" path="res://ui/UI/HP BOX.png" id="4_vs11h"]
+[ext_resource type="Texture2D" uid="uid://oqmtvv0resgl" path="res://ui/UI/SONICBOX.png" id="5_8h1je"]
+[ext_resource type="Texture2D" uid="uid://cpdibnjf1nusx" path="res://ui/UI/hp.png" id="6_8w43g"]
+[ext_resource type="Texture2D" uid="uid://djc5wue6k2ewe" path="res://ui/UI/ring.png" id="7_ttvir"]
+[ext_resource type="Texture2D" uid="uid://b42fgfa18tter" path="res://ui/UI/TIME.png" id="8_84373"]
+
+[node name="CharacterMain" type="Node3D"]
+script = ExtResource("1_pitss")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.006
+offset_right = 1272.32
+offset_bottom = 720.0
+stretch = true
+stretch_shrink = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(426, 240)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="UI-Images" type="Node2D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+
+[node name="BigRing2" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+position = Vector2(213, 120)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_gktwp")
+
+[node name="Speed" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+texture_filter = 1
+position = Vector2(87, 214)
+texture = ExtResource("2_vvxoi")
+
+[node name="BigRing" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+visible = false
+texture_filter = 1
+position = Vector2(370, 40)
+texture = ExtResource("3_gktwp")
+
+[node name="HpBox" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+texture_filter = 1
+position = Vector2(45, 41)
+texture = ExtResource("4_vs11h")
+
+[node name="Sonicbox" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+texture_filter = 1
+position = Vector2(45, 41)
+texture = ExtResource("5_8h1je")
+
+[node name="Hp" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+position = Vector2(87, 59)
+texture = ExtResource("6_8w43g")
+
+[node name="Ring" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+position = Vector2(98, 43)
+texture = ExtResource("7_ttvir")
+
+[node name="Time" type="Sprite2D" parent="CanvasLayer/SubViewportContainer/SubViewport/UI-Images"]
+position = Vector2(97, 26)
+texture = ExtResource("8_84373")

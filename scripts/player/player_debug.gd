@@ -40,6 +40,7 @@ func _physics_process(_delta: float) -> void:
 	add_debug_info("Speed Up?: " + readable_float(player.accel_speed))
 	add_debug_info("Grounded?: " + readable_float(player.is_on_floor()))
 	add_debug_info("Gravity: " + readable_float(player._gravity))
+	add_debug_info("Jump Velo: " + readable_float(player.jump_gravity))
 	add_debug_info("")
 	add_debug_info("Character: " + readable_float(Global.characterID))
 	add_debug_info("CharacterRN?: " + str(Global.player_char))

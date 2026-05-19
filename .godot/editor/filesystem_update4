@@ -1,6 +1,0 @@
-res://model/CHARACTERS/surivors/sonic.tscn
-res://scene/menus/TitleScreen/ScrollShader.gdshader
-res://scripts/player/player_setup.gd
-res://entity/characternew.tscn
-res://scripts/character-scripts/tails.gd
-res://model/CHARACTERS/surivors/tails.tscn

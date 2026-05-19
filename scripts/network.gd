@@ -2,7 +2,7 @@ extends Node
 
 @onready var multiplayer_ui = $CanvasLayer
 
-const PLAYER = preload("res://entity/characternew.tscn")
+const PLAYER = preload("res://entity/CharacterSpawner.tscn")
 
 var peer = ENetMultiplayerPeer.new()
 

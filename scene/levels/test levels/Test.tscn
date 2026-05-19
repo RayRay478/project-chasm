@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dl5lsk3ecoy8x" path="res://model/otherstages/Untitled.png" id="4_s02xw"]
 [ext_resource type="ArrayMesh" uid="uid://0ejpok1hebii" path="res://model/otherstages/MeshTest.obj" id="4_tc56f"]
 [ext_resource type="Script" uid="uid://dubfpdymvtp4b" path="res://scripts/character-scripts/buttons/sonic_button.gd" id="4_vgg6e"]
-[ext_resource type="PackedScene" uid="uid://cbdsxiqqrbgo2" path="res://entity/speed_booster.tscn" id="5_arofs"]
+[ext_resource type="PackedScene" uid="uid://cbdsxiqqrbgo2" path="res://entity/CHARACTERS/UNUSED/speed_booster.tscn" id="5_arofs"]
 [ext_resource type="Texture2D" uid="uid://b23saonqqfllq" path="res://ui/UI/HP CHARACTERS/tails1.png" id="5_p88dw"]
 [ext_resource type="Script" uid="uid://bhfulgl5vuoun" path="res://scripts/character-scripts/buttons/tails_button.gd" id="6_wgpru"]
 [ext_resource type="Texture2D" uid="uid://bim4fk3y86ify" path="res://ui/UI/HP CHARACTERS/knuckles1.png" id="7_i81lv"]

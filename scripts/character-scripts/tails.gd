@@ -1,8 +1,5 @@
 @icon("res://ui/UI/HP CHARACTERS/tails1.png")
-
-
 extends PlayerMain
-
 
 var flying_state: bool = false
 var flying_power = 10

@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://d2vj4icycxrg8" path="res://model/otherstages/sa2b_testlevel/Textures/25dbb4c1.png" id="17_m3gdf"]
 [ext_resource type="Texture2D" uid="uid://cgkkcmnihn653" path="res://model/otherstages/sa2b_testlevel/Textures/b7bd407e.png" id="18_lj3jb"]
 [ext_resource type="Texture2D" uid="uid://bf43812nj33ap" path="res://ui/UI/HP CHARACTERS/sonic1.png" id="19_2jssm"]
-[ext_resource type="Texture2D" uid="uid://i6sj54egnpvi" path="res://model/blendfiles/characters/surviors/knuck;.png" id="19_6705r"]
+[ext_resource type="Texture2D" uid="uid://i6sj54egnpvi" path="res://model/UNUSED+RANDOM/knuck;.png" id="19_6705r"]
 [ext_resource type="Script" uid="uid://dubfpdymvtp4b" path="res://scripts/character-scripts/buttons/sonic_button.gd" id="20_2ba7h"]
 [ext_resource type="Texture2D" uid="uid://b23saonqqfllq" path="res://ui/UI/HP CHARACTERS/tails1.png" id="21_w0knb"]
 [ext_resource type="Script" uid="uid://bhfulgl5vuoun" path="res://scripts/character-scripts/buttons/tails_button.gd" id="22_l336x"]
