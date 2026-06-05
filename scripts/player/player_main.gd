@@ -309,7 +309,7 @@ func _physics_process(delta: float) -> void:
 #endregion
 # =========================================================================
 	move_and_slide() 
-	# HYPER'S INSANE PHYSICS BULLSHIT HERE WE GO
+	# HYPER'S INSANE PHYSICS CRAP HERE WE GO
 	if is_on_floor():
 		var n := get_floor_normal()
 		var horiz := velocity.slide(up_direction)
