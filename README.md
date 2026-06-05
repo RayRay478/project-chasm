@@ -2,7 +2,7 @@
 
  *A low-poly asymmetrical survival horror multiplayer game based on internet oddities found in Sonic the Hedgehog. An anomalous, paradigmless event has shattered the multiversal boundaries of the known and unknown, casting Sonic and his friends into a twisted helix between worlds - where beings beyond rhyme or reason lurk.*
 
--#  *Large focus on low-polygonal limitations; Sonic World mode from Sonic Jam being the main inspiration for the gameplay loop and it's physics.*
+ *Large focus on low-polygonal limitations; Sonic World mode from Sonic Jam being the main inspiration for the gameplay loop and it's physics.*
 
 This project is a 3D Sonic-inspired platformer developed in Godot, focusing on momentum-based movement and terrain interaction. The codebase utilizes inheritance, reusable components, and a shared animation framework to support multiple playable characters while maintaining a centralized movement system. Current features include traction-based movement, velocity-preserving jumps, slope physics, and state-driven animation control.
 ## 📁 Directory Structure
